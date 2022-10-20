@@ -23,7 +23,7 @@ timezone: America/Sao_Paulo
 
 title: Andre Barbato                          # the main title
 
-tagline: Data Science e Analytics   # it will display as the sub-title
+tagline: Economista e pós graduando em Data Science e Analytics, com foco em modelagem e predictive analytics   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A blog and portfolio for Data Science and Analytics projects.
@@ -89,10 +89,10 @@ avatar: /img/avatar/android-chrome-512x512.jpg
 toc: true
 
 comments:
-  active:         # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  active: 'disqus'         # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
   # The active options are as follows:
   disqus:
-    shortname:    # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: teste   # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
   # utterances settings › https://utteranc.es/
   utterances:
     repo:         # <gh-username>/<repo>
