@@ -13,4 +13,3 @@ order: 4
 - R
 - Planejamento Financeiro
 - Análise de Dados
-- Machine Learning
