@@ -23,7 +23,7 @@ timezone: America/Sao_Paulo
 
 title: Andre Barbato                          # the main title
 
-tagline: Economista e pós graduando em Data Science e Analytics, com foco em modelagem e predictive analytics   # it will display as the sub-title
+tagline: Economista e pós-graduando em Data Science e Analytics   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A blog and portfolio for Data Science and Analytics projects.
