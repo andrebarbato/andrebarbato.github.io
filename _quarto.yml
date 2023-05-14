@@ -2,18 +2,21 @@ project:
   type: website
   output-dir: docs
 website:
-  title: "andrebarbato.github.io"
+  title: "Andre Barbato"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/andrebarbato
+      - icon: linkedin
+        href: https://www.linkedin.com/in/andrebarbato/
 format:
   html:
-    theme: cosmo
+    theme: 
+      light: sandstone
+      dark: darkly
     css: styles.css
+    highlight-style: zenburn
 
 editor: visual
 

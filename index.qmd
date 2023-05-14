@@ -1,12 +1,12 @@
 ---
-title: "andrebarbato.github.io"
+title: "Data Science Blog"
 listing:
   contents: posts
   sort: "date desc"
-  type: default
+  type: grid
   categories: true
-  sort-ui: false
-  filter-ui: false
+  sort-ui: true
+  filter-ui: true
 page-layout: full
 title-block-banner: true
 ---
