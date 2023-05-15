@@ -5,8 +5,17 @@ listing:
   sort: "date desc"
   type: default
   categories: true
+<<<<<<< HEAD
   sort-ui: false
   filter-ui: false
+=======
+  sort-ui: true
+<<<<<<< HEAD
+  filter-ui: true
+=======
+  filter-ui: false
+>>>>>>> 904da2108bedb64f12044de8243456c8893dac57
+>>>>>>> 44cf567f5e48f0d9e9f11658d72ea5aba2ec4f3e
 page-layout: full
 title-block-banner: true
 ---
