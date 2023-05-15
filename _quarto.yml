@@ -3,6 +3,7 @@ project:
   output-dir: docs
 website:
   title: "Andre Barbato"
+  favicon: "images/favicon.png"
   navbar:
     right:
       - about.qmd
@@ -10,13 +11,17 @@ website:
         href: https://github.com/andrebarbato
       - icon: linkedin
         href: https://www.linkedin.com/in/andrebarbato/
+  search: 
+    location: navbar
+    type: textbox
 format:
   html:
     theme: 
-      light: sandstone
       dark: darkly
+      light: [darkly,theme_dark_custom.scss]
     css: styles.css
-    highlight-style: zenburn
+    code-link: true
+    highlight-style: github
 
 editor: visual
 
