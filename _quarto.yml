@@ -16,9 +16,9 @@ website:
     type: textbox
 format:
   html:
-    theme: 
-      dark: darkly
+    theme:
       light: [darkly,theme_dark_custom.scss]
+      dark: darkly
     css: styles.css
     code-link: true
     highlight-style: github
