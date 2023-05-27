@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Andre Barbato"
 listing:
   contents: posts
   sort: "date desc"
