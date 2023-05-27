@@ -1,25 +1,17 @@
 project:
-  type: default
+  type: website
   output-dir: docs
 website:
   title: "Andre Barbato"
   favicon: "images/favicon.png"
-  sidebar:
-    style: docked
-    logo: "images/favicon.png"
-    background: dark
-    pinned: true
-    contents:
-      - about.qmd
-  page-footer:
-    center: "Copyright 2023, Andre Barbato"
-    border: false
+  navbar:
     right:
+      - about.qmd
       - icon: github
         href: https://github.com/andrebarbato
       - icon: linkedin
         href: https://www.linkedin.com/in/andrebarbato/
-  search: false 
+  search: true
 format:
   html:
     theme:
@@ -27,6 +19,8 @@ format:
       dark: darkly
     css: styles.css
     code-link: true
+    code-tools: true
+    code-fold: show
     highlight-style: github
 
 editor: visual
