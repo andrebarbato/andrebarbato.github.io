@@ -6,6 +6,7 @@ website:
   favicon: "images/favicon.png"
   navbar:
     right:
+      - blog.qmd
       - about.qmd
       - icon: github
         href: https://github.com/andrebarbato

@@ -5,5 +5,11 @@
       "/posts/post-with-code/index.html",
       "/posts/welcome/index.html"
     ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/blog/fundamentos_estatistica/index.html"
+    ]
   }
 ]
