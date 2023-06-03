@@ -183,7 +183,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
+  <ul class="collapse">
+  <li><a href="#tipos-de-variáveis" id="toc-tipos-de-variáveis" class="nav-link" data-scroll-target="#tipos-de-variáveis">Tipos de variáveis</a></li>
+  <li><a href="#estatísticas-descritivas" id="toc-estatísticas-descritivas" class="nav-link" data-scroll-target="#estatísticas-descritivas">Estatísticas Descritivas</a>
+  <ul class="collapse">
+  <li><a href="#tabelas-de-frequência" id="toc-tabelas-de-frequência" class="nav-link" data-scroll-target="#tabelas-de-frequência">Tabelas de Frequência</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -233,10 +240,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <section id="introdução" class="level1">
 <h1>Introdução</h1>
+<p>O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.</p>
+<section id="tipos-de-variáveis" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-variáveis">Tipos de variáveis</h2>
+<p>As variáveis podem ser classificadas em:</p>
+<ul>
+<li><p><strong>Qualitativas</strong>: são variáveis não métricas, atribuem categorias ou classificações. Podem atribuir duas ou mais categorias. A análise descritiva de variáveis qualitativas é feita por meio de tabelas de frequência e gráficos, pois tais variáveis não permitem o cálculo de medidas de posição e dispersão.</p>
+<p>Exemplos: Escalas Likert; Faixa de renda; Nacionalidade; Estado civil; Escolaridade; Tipo de solo; Vacinado ou não; Tipos de comorbidades.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Escalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div></li>
+<li><p><strong>Quantitativas</strong>: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas estatísticas, incluindo as medidas de posição e dispersão.</p>
+<p>Exemplos: Idade; Renda (em R$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa.</p></li>
+</ul>
+</section>
+<section id="estatísticas-descritivas" class="level2">
+<h2 class="anchored" data-anchor-id="estatísticas-descritivas">Estatísticas Descritivas</h2>
+<p>A técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).</p>
+<section id="tabelas-de-frequência" class="level3">
+<h3 class="anchored" data-anchor-id="tabelas-de-frequência">Tabelas de Frequência</h3>
+<p>Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas.</p>
+<p>25min</p>
 
 
 <!-- -->
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -552,7 +592,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="al">![Fonte: Unsplash](capa.jpg)</span>{fig-alt="Uso gratuito sob a Licença da Unsplash" fig-align="left" width="642"}</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tipos de variáveis</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>As variáveis podem ser classificadas em:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Qualitativas**: são variáveis não métricas, atribuem categorias ou classificações. Podem atribuir duas ou mais categorias. A análise descritiva de variáveis qualitativas é feita por meio de tabelas de frequência e gráficos, pois tais variáveis não permitem o cálculo de medidas de posição e dispersão.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    Exemplos: Escalas Likert; Faixa de renda; Nacionalidade; Estado civil; Escolaridade; Tipo de solo; Vacinado ou não; Tipos de comorbidades.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    ## Escalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantitativas**: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    estatísticas, incluindo as medidas de posição e dispersão.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    Exemplos: Idade; Renda (em R\$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estatísticas Descritivas</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>A técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tabelas de Frequência</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>25min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

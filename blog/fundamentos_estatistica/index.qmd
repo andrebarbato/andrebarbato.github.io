@@ -12,3 +12,32 @@ Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilíst
 ![Fonte: Unsplash](capa.jpg){fig-alt="Uso gratuito sob a Licença da Unsplash" fig-align="left" width="642"}
 
 # Introdução
+
+O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.
+
+## Tipos de variáveis
+
+As variáveis podem ser classificadas em:
+
+-   **Qualitativas**: são variáveis não métricas, atribuem categorias ou classificações. Podem atribuir duas ou mais categorias. A análise descritiva de variáveis qualitativas é feita por meio de tabelas de frequência e gráficos, pois tais variáveis não permitem o cálculo de medidas de posição e dispersão.
+
+    Exemplos: Escalas Likert; Faixa de renda; Nacionalidade; Estado civil; Escolaridade; Tipo de solo; Vacinado ou não; Tipos de comorbidades.
+
+    ::: callout-note
+    ## Escalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.
+    :::
+
+-   **Quantitativas**: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas
+    estatísticas, incluindo as medidas de posição e dispersão.
+
+    Exemplos: Idade; Renda (em R\$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa.
+
+## Estatísticas Descritivas
+
+A técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).
+
+### Tabelas de Frequência
+
+Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas.
+
+25min

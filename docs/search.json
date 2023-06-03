@@ -53,6 +53,20 @@
     "href": "blog/fundamentos_estatistica/index.html",
     "title": "Fundamentos de Estatística",
     "section": "",
-    "text": "Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilística e inferencial.\n\n\n\nFonte: Unsplash\n\n\n\nIntrodução"
+    "text": "Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilística e inferencial."
+  },
+  {
+    "objectID": "blog/fundamentos_estatistica/index.html#tipos-de-variáveis",
+    "href": "blog/fundamentos_estatistica/index.html#tipos-de-variáveis",
+    "title": "Fundamentos de Estatística",
+    "section": "Tipos de variáveis",
+    "text": "Tipos de variáveis\nAs variáveis podem ser classificadas em:\n\nQualitativas: são variáveis não métricas, atribuem categorias ou classificações. Podem atribuir duas ou mais categorias. A análise descritiva de variáveis qualitativas é feita por meio de tabelas de frequência e gráficos, pois tais variáveis não permitem o cálculo de medidas de posição e dispersão.\nExemplos: Escalas Likert; Faixa de renda; Nacionalidade; Estado civil; Escolaridade; Tipo de solo; Vacinado ou não; Tipos de comorbidades.\n\n\n\n\n\n\nEscalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.\n\n\n\n\n\n\nQuantitativas: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas estatísticas, incluindo as medidas de posição e dispersão.\nExemplos: Idade; Renda (em R$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa."
+  },
+  {
+    "objectID": "blog/fundamentos_estatistica/index.html#estatísticas-descritivas",
+    "href": "blog/fundamentos_estatistica/index.html#estatísticas-descritivas",
+    "title": "Fundamentos de Estatística",
+    "section": "Estatísticas Descritivas",
+    "text": "Estatísticas Descritivas\nA técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).\n\nTabelas de Frequência\nNormalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas.\n25min"
   }
 ]
