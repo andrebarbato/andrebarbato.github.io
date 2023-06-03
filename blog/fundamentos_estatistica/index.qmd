@@ -1,12 +1,14 @@
 ---
 title: "Fundamentos de Estatística"
-author: "André Barbato"
+author: "Andre Barbato"
 date: "2021-10-01"
-categories: [estatística, R]
+categories: [estatística, r, notas de aula]
 image: "capa.jpg"
 toc: true
 ---
 
-Fundamentos de Estatísticas em R, cobrindo estatística descritiva, probabilidade, inferencial e testes paramétricos.
+Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilística e inferencial.
 
-![Fonte: Unsplash](capa.jpg){fig-alt="Uso gratuito sob a Licença da Unsplash" width="642"}
+![Fonte: Unsplash](capa.jpg){fig-alt="Uso gratuito sob a Licença da Unsplash" fig-align="left" width="642"}
+
+# Introdução
