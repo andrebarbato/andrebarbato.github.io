@@ -5,6 +5,8 @@ date: "2021-10-01"
 categories: [estatística, r, notas de aula]
 image: "capa.jpg"
 toc: true
+toccolor: "blue"
+toc-title: "Nesta página" 
 ---
 
 Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilística e inferencial.
@@ -27,17 +29,77 @@ As variáveis podem ser classificadas em:
     ## Escalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.
     :::
 
--   **Quantitativas**: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas
-    estatísticas, incluindo as medidas de posição e dispersão.
+-   **Quantitativas**: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas estatísticas, incluindo as medidas de posição e dispersão.
 
     Exemplos: Idade; Renda (em R\$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa.
 
-## Estatísticas Descritivas
+# Estatísticas Descritivas
 
 A técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).
 
-### Tabelas de Frequência
+## Tabelas de Frequência
 
-Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas.
+Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas, com uma abordagem semelhante à usada para variáveis qualitativas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas ou classes.
 
-25min
+-   absoluta: contagem de ocorrência em uma categoria;
+
+-   relativa: percentual de cada categoria;
+
+-   acumulada: acumulo das frequências absolutas;
+
+-   relativa acumulada: acumulo das frequências relativas.
+
+Para demonstrar uma tabela de frequência no R, vamos utilizar uma base de dados em que foram coletados os países de origem de 300 pessoas em uma palestra. Veja o exemplo abaixo:
+
+```{r}
+# carregando o arquivo csv no ambiente do R
+pais_origem <- read.csv("freq_table.csv", sep = ";")
+
+# visualizando o cabeçalho
+head(pais_origem, 10)
+```
+
+Temos então a nacionalidade de cada indivíduo. A nacionalidade é uma categoria atribuida a cada indivíduo, dessa forma, podemos criar uma tabela de frequência absoluta da seguinte forma:
+
+```{r}
+# tabela de frequência absoluta
+freq_abs <- table(pais_origem$pais_origem)
+
+freq_abs
+```
+
+Para a frequência relativa, podemos calcular da seguinte forma:
+
+```{r}
+# tabela de frequência relativa
+freq_rel <- table(pais_origem$pais_origem)/length(pais_origem$individuo) * 100
+
+freq_rel
+```
+
+Para a frequência absoluta acumulada, podemos calcular da seguinte forma:
+
+```{r}
+# tabela de frequência absoluta acumulada
+freq_abs_cum <- cumsum(table(pais_origem$pais_origem))
+
+freq_abs_cum
+```
+
+Da mesma forma, para a frequência relativa acumulada, podemos calcular da seguinte forma:
+
+```{r}
+# tabela de frequência relativa acumulada
+freq_rel_cum <- cumsum(table(pais_origem$pais_origem)/length(pais_origem$individuo) * 100)
+
+freq_rel_cum
+```
+
+Podemos então, juntar todas as informações em uma única tabela de frequência:
+
+```{r}
+# criando uma única tablea de frequência
+tabela_freq <- cbind(freq_abs, freq_rel, freq_abs_cum, freq_rel_cum)
+
+tabela_freq
+```
