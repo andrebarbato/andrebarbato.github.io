@@ -39,7 +39,7 @@ A técnica aplica para descrever as variáveis vai depender do tipo. A princípi
 
 ## Tabelas de Frequência
 
-Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas, com uma abordagem semelhante à usada para variáveis qualitativas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas ou classes.
+Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas, com uma abordagem semelhante a usada para variáveis qualitativas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas ou classes.
 
 -   absoluta: contagem de ocorrência em uma categoria;
 
@@ -61,7 +61,7 @@ pais_origem <- read.csv("freq_table.csv", sep = ";")
 head(pais_origem, 10)
 ```
 
-Temos então a nacionalidade de cada indivíduo. A nacionalidade é uma categoria atribuida a cada indivíduo, dessa forma, podemos criar uma tabela de frequência absoluta da seguinte forma:
+A nacionalidade é uma categoria atribuida a cada indivíduo, dessa forma, podemos criar uma tabela de frequência absoluta da seguinte forma:
 
 ```{r}
 # tabela de frequência absoluta
