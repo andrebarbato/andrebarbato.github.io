@@ -417,6 +417,16 @@ Uruguai             17  5.666667          300   100.000000</code></pre>
 <span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">6000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">8000</span> <span class="op">~</span>  <span class="st">"6.001-8.000"</span>,</span>
 <span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">8000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">10000</span> <span class="op">~</span> <span class="st">"8.001-10.000"</span>, </span>
 <span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">10000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">12000</span> <span class="op">~</span> <span class="st">"10.001-12.000"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Transformando a variável faixa_renda em factor e ordenando por níveis</span></span>
+<span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span>,</span>
+<span>                                   levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0-2.000"</span>,</span>
+<span>                                              <span class="st">"2.001-4.000"</span>,</span>
+<span>                                              <span class="st">"4.001-6.000"</span>,</span>
+<span>                                              <span class="st">"6.001-8.000"</span>,</span>
+<span>                                              <span class="st">"8.001-10.000"</span>,</span>
+<span>                                              <span class="st">"10.001-12.000"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>  obs   renda faixa_renda
@@ -441,14 +451,15 @@ Uruguai             17  5.666667          300   100.000000</code></pre>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>              r_freq_abs r_freq_rel r_freq_abs_cum r_freq_rel_cum
 0-2.000                9         18              9             18
-10.001-12.000          2          4             11             22
-2.001-4.000           19         38             30             60
-4.001-6.000           11         22             41             82
-6.001-8.000            5         10             46             92
-8.001-10.000           4          8             50            100</code></pre>
+2.001-4.000           19         38             28             56
+4.001-6.000           11         22             39             78
+6.001-8.000            5         10             44             88
+8.001-10.000           4          8             48             96
+10.001-12.000          2          4             50            100</code></pre>
 </div>
 </div>
 </section></section><section id="medidas-de-posição" class="level2"><h2 class="anchored" data-anchor-id="medidas-de-posição">Medidas de Posição</h2>
+<p>1:26</p>
 
 
 <!-- -->
@@ -885,23 +896,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-145"><a href="#cb19-145" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">6000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">8000</span> <span class="sc">~</span>  <span class="st">"6.001-8.000"</span>,</span>
 <span id="cb19-146"><a href="#cb19-146" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">8000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">10000</span> <span class="sc">~</span> <span class="st">"8.001-10.000"</span>, </span>
 <span id="cb19-147"><a href="#cb19-147" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">10000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">12000</span> <span class="sc">~</span> <span class="st">"10.001-12.000"</span>))</span>
-<span id="cb19-148"><a href="#cb19-148" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(renda_mensal)</span>
-<span id="cb19-149"><a href="#cb19-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb19-150"><a href="#cb19-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-151"><a href="#cb19-151" aria-hidden="true" tabindex="-1"></a>A partir da categorização da variável renda podemos seguir com os passos para criação da tabela de frequência:</span>
-<span id="cb19-152"><a href="#cb19-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-155"><a href="#cb19-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb19-156"><a href="#cb19-156" aria-hidden="true" tabindex="-1"></a>r_freq_abs <span class="ot">&lt;-</span> <span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda)</span>
-<span id="cb19-157"><a href="#cb19-157" aria-hidden="true" tabindex="-1"></a>r_freq_abs_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda))</span>
-<span id="cb19-158"><a href="#cb19-158" aria-hidden="true" tabindex="-1"></a>r_freq_rel <span class="ot">&lt;-</span> <span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">/</span> <span class="fu">length</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb19-159"><a href="#cb19-159" aria-hidden="true" tabindex="-1"></a>r_freq_rel_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">/</span> <span class="fu">length</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb19-148"><a href="#cb19-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-149"><a href="#cb19-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformando a variável faixa_renda em factor e ordenando por níveis</span></span>
+<span id="cb19-150"><a href="#cb19-150" aria-hidden="true" tabindex="-1"></a>renda_mensal<span class="sc">$</span>faixa_renda <span class="ot">&lt;-</span> <span class="fu">factor</span>(renda_mensal<span class="sc">$</span>faixa_renda,</span>
+<span id="cb19-151"><a href="#cb19-151" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0-2.000"</span>,</span>
+<span id="cb19-152"><a href="#cb19-152" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"2.001-4.000"</span>,</span>
+<span id="cb19-153"><a href="#cb19-153" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"4.001-6.000"</span>,</span>
+<span id="cb19-154"><a href="#cb19-154" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"6.001-8.000"</span>,</span>
+<span id="cb19-155"><a href="#cb19-155" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"8.001-10.000"</span>,</span>
+<span id="cb19-156"><a href="#cb19-156" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"10.001-12.000"</span>))</span>
+<span id="cb19-157"><a href="#cb19-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-158"><a href="#cb19-158" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(renda_mensal)</span>
+<span id="cb19-159"><a href="#cb19-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb19-160"><a href="#cb19-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-161"><a href="#cb19-161" aria-hidden="true" tabindex="-1"></a>r_tabela_freq <span class="ot">&lt;-</span> <span class="fu">cbind</span>(r_freq_abs, r_freq_rel, r_freq_abs_cum,r_freq_rel_cum)</span>
+<span id="cb19-161"><a href="#cb19-161" aria-hidden="true" tabindex="-1"></a>A partir da categorização da variável renda podemos seguir com os passos para criação da tabela de frequência:</span>
 <span id="cb19-162"><a href="#cb19-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-163"><a href="#cb19-163" aria-hidden="true" tabindex="-1"></a>r_tabela_freq</span>
-<span id="cb19-164"><a href="#cb19-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb19-165"><a href="#cb19-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-166"><a href="#cb19-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## Medidas de Posição</span></span>
+<span id="cb19-165"><a href="#cb19-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-166"><a href="#cb19-166" aria-hidden="true" tabindex="-1"></a>r_freq_abs <span class="ot">&lt;-</span> <span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda)</span>
+<span id="cb19-167"><a href="#cb19-167" aria-hidden="true" tabindex="-1"></a>r_freq_abs_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda))</span>
+<span id="cb19-168"><a href="#cb19-168" aria-hidden="true" tabindex="-1"></a>r_freq_rel <span class="ot">&lt;-</span> <span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">/</span> <span class="fu">length</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb19-169"><a href="#cb19-169" aria-hidden="true" tabindex="-1"></a>r_freq_rel_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">/</span> <span class="fu">length</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb19-170"><a href="#cb19-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-171"><a href="#cb19-171" aria-hidden="true" tabindex="-1"></a>r_tabela_freq <span class="ot">&lt;-</span> <span class="fu">cbind</span>(r_freq_abs, r_freq_rel, r_freq_abs_cum,r_freq_rel_cum)</span>
+<span id="cb19-172"><a href="#cb19-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-173"><a href="#cb19-173" aria-hidden="true" tabindex="-1"></a>r_tabela_freq</span>
+<span id="cb19-174"><a href="#cb19-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-175"><a href="#cb19-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-176"><a href="#cb19-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## Medidas de Posição</span></span>
+<span id="cb19-177"><a href="#cb19-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-178"><a href="#cb19-178" aria-hidden="true" tabindex="-1"></a>1:26</span>
+<span id="cb19-179"><a href="#cb19-179" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

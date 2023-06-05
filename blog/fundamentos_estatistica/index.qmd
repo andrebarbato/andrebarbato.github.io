@@ -131,6 +131,16 @@ renda_mensal <- renda_mensal |>
                                  renda > 6000 & renda <= 8000 ~  "6.001-8.000",
                                  renda > 8000 & renda <= 10000 ~ "8.001-10.000", 
                                  renda > 10000 & renda <= 12000 ~ "10.001-12.000"))
+
+# Transformando a variável faixa_renda em factor e ordenando por níveis
+renda_mensal$faixa_renda <- factor(renda_mensal$faixa_renda,
+                                   levels = c("0-2.000",
+                                              "2.001-4.000",
+                                              "4.001-6.000",
+                                              "6.001-8.000",
+                                              "8.001-10.000",
+                                              "10.001-12.000"))
+
 head(renda_mensal)
 ```
 
@@ -148,3 +158,7 @@ r_tabela_freq
 ```
 
 ## Medidas de Posição
+
+1:26
+
+
