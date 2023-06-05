@@ -177,7 +177,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li>
 <a href="#estat%C3%ADsticas-descritivas" id="toc-estatísticas-descritivas" class="nav-link" data-scroll-target="#estat%C3%ADsticas-descritivas">Estatísticas Descritivas</a>
   <ul class="collapse">
-<li><a href="#tabelas-de-frequ%C3%AAncia" id="toc-tabelas-de-frequência" class="nav-link" data-scroll-target="#tabelas-de-frequ%C3%AAncia">Tabelas de Frequência</a></li>
+<li>
+<a href="#tabelas-de-frequ%C3%AAncia" id="toc-tabelas-de-frequência" class="nav-link" data-scroll-target="#tabelas-de-frequ%C3%AAncia">Tabelas de Frequência</a>
+  <ul class="collapse">
+<li><a href="#vari%C3%A1veis-qualitativas" id="toc-variáveis-qualitativas" class="nav-link" data-scroll-target="#vari%C3%A1veis-qualitativas">Variáveis Qualitativas</a></li>
+  <li><a href="#vari%C3%A1veis-quantitativas" id="toc-variáveis-quantitativas" class="nav-link" data-scroll-target="#vari%C3%A1veis-quantitativas">Variáveis Quantitativas</a></li>
+  </ul>
+</li>
+  <li><a href="#medidas-de-posi%C3%A7%C3%A3o" id="toc-medidas-de-posição" class="nav-link" data-scroll-target="#medidas-de-posi%C3%A7%C3%A3o">Medidas de Posição</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -256,6 +263,7 @@ Escalas Likert são questionários cujas respostas são normalmente do tipo conc
 <li><p>acumulada: acumulo das frequências absolutas;</p></li>
 <li><p>relativa acumulada: acumulo das frequências relativas.</p></li>
 </ul>
+<section id="variáveis-qualitativas" class="level3"><h3 class="anchored" data-anchor-id="variáveis-qualitativas">Variáveis Qualitativas</h3>
 <p>Para demonstrar uma tabela de frequência no R, vamos utilizar uma base de dados em que foram coletados os países de origem de 300 pessoas em uma palestra. Veja o exemplo abaixo:</p>
 <div class="cell">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># carregando o arquivo csv no ambiente do R</span></span>
@@ -376,6 +384,71 @@ Suiça               11  3.666667          283    94.333333
 Uruguai             17  5.666667          300   100.000000</code></pre>
 </div>
 </div>
+</section><section id="variáveis-quantitativas" class="level3"><h3 class="anchored" data-anchor-id="variáveis-quantitativas">Variáveis Quantitativas</h3>
+<p>Para exemplificar uma tabela de frequência para variáveis quantitativas contínuas, temos um banco de dados em que foi coletada a renda mensal de 50 pessoas.</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Carregando o arquivo no ambiente do R</span></span>
+<span><span class="va">renda_mensal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"renda_mensal.csv"</span>, sep <span class="op">=</span> <span class="st">";"</span>, dec <span class="op">=</span> <span class="st">","</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">renda_mensal</span>, <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>   obs    renda
+1    1  2893.70
+2    2  3448.38
+3    3  1460.81
+4    4  2223.70
+5    5  2500.70
+6    6  1100.25
+7    7  3560.10
+8    8  5510.76
+9    9  2900.90
+10  10 10127.50</code></pre>
+</div>
+</div>
+<p>Uma vez que a variável renda se trata de uma variável quantitativa contínua, primeiramente precisamos categorizá-la criando faixas de renda.</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Criando as faixas de renda</span></span>
+<span><span class="va">renda_mensal</span> <span class="op">&lt;-</span> <span class="va">renda_mensal</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>faixa_renda <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">2000</span> <span class="op">~</span> <span class="st">"0-2.000"</span>,</span>
+<span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">2000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">4000</span> <span class="op">~</span> <span class="st">"2.001-4.000"</span>,</span>
+<span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">4000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">6000</span> <span class="op">~</span> <span class="st">"4.001-6.000"</span>,</span>
+<span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">6000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">8000</span> <span class="op">~</span>  <span class="st">"6.001-8.000"</span>,</span>
+<span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">8000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">10000</span> <span class="op">~</span> <span class="st">"8.001-10.000"</span>, </span>
+<span>                                 <span class="va">renda</span> <span class="op">&gt;</span> <span class="fl">10000</span> <span class="op">&amp;</span> <span class="va">renda</span> <span class="op">&lt;=</span> <span class="fl">12000</span> <span class="op">~</span> <span class="st">"10.001-12.000"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  obs   renda faixa_renda
+1   1 2893.70 2.001-4.000
+2   2 3448.38 2.001-4.000
+3   3 1460.81     0-2.000
+4   4 2223.70 2.001-4.000
+5   5 2500.70 2.001-4.000
+6   6 1100.25     0-2.000</code></pre>
+</div>
+</div>
+<p>A partir da categorização da variável renda podemos seguir com os passos para criação da tabela de frequência:</p>
+<div class="cell">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r_freq_abs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span><span class="op">)</span></span>
+<span><span class="va">r_freq_abs_cum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">r_freq_rel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span></span>
+<span><span class="va">r_freq_rel_cum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">renda_mensal</span><span class="op">$</span><span class="va">faixa_renda</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">r_tabela_freq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">r_freq_abs</span>, <span class="va">r_freq_rel</span>, <span class="va">r_freq_abs_cum</span>,<span class="va">r_freq_rel_cum</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">r_tabela_freq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>              r_freq_abs r_freq_rel r_freq_abs_cum r_freq_rel_cum
+0-2.000                9         18              9             18
+10.001-12.000          2          4             11             22
+2.001-4.000           19         38             30             60
+4.001-6.000           11         22             41             82
+6.001-8.000            5         10             46             92
+8.001-10.000           4          8             50            100</code></pre>
+</div>
+</div>
+</section></section><section id="medidas-de-posição" class="level2"><h2 class="anchored" data-anchor-id="medidas-de-posição">Medidas de Posição</h2>
 
 
 <!-- -->
@@ -679,111 +752,156 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Fundamentos de Estatística"</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Andre Barbato"</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2021-10-01"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [estatística, r, notas de aula]</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "capa.jpg"</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="an">toccolor:</span><span class="co"> "blue"</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Nesta página" </span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilística e inferencial.</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="al">![Fonte: Unsplash](capa.jpg)</span>{fig-alt="Uso gratuito sob a Licença da Unsplash" fig-align="left" width="642"}</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tipos de variáveis</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>As variáveis podem ser classificadas em:</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Qualitativas**: são variáveis não métricas, atribuem categorias ou classificações. Podem atribuir duas ou mais categorias. A análise descritiva de variáveis qualitativas é feita por meio de tabelas de frequência e gráficos, pois tais variáveis não permitem o cálculo de medidas de posição e dispersão.</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    Exemplos: Escalas Likert; Faixa de renda; Nacionalidade; Estado civil; Escolaridade; Tipo de solo; Vacinado ou não; Tipos de comorbidades.</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    ## Escalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    :::</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantitativas**: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas estatísticas, incluindo as medidas de posição e dispersão.</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    Exemplos: Idade; Renda (em R\$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa.</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estatísticas Descritivas</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>A técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tabelas de Frequência</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas, com uma abordagem semelhante à usada para variáveis qualitativas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas ou classes.</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>absoluta: contagem de ocorrência em uma categoria;</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>relativa: percentual de cada categoria;</span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>acumulada: acumulo das frequências absolutas;</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>relativa acumulada: acumulo das frequências relativas.</span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>Para demonstrar uma tabela de frequência no R, vamos utilizar uma base de dados em que foram coletados os países de origem de 300 pessoas em uma palestra. Veja o exemplo abaixo:</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="co"># carregando o arquivo csv no ambiente do R</span></span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>pais_origem <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"freq_table.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="co"># visualizando o cabeçalho</span></span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pais_origem, <span class="dv">10</span>)</span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>Temos então a nacionalidade de cada indivíduo. A nacionalidade é uma categoria atribuida a cada indivíduo, dessa forma, podemos criar uma tabela de frequência absoluta da seguinte forma:</span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência absoluta</span></span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>freq_abs <span class="ot">&lt;-</span> <span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem)</span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>freq_abs</span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>Para a frequência relativa, podemos calcular da seguinte forma:</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência relativa</span></span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> <span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem)<span class="sc">/</span><span class="fu">length</span>(pais_origem<span class="sc">$</span>individuo) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a>freq_rel</span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a>Para a frequência absoluta acumulada, podemos calcular da seguinte forma:</span>
-<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência absoluta acumulada</span></span>
-<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>freq_abs_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem))</span>
-<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a>freq_abs_cum</span>
-<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a>Da mesma forma, para a frequência relativa acumulada, podemos calcular da seguinte forma:</span>
-<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência relativa acumulada</span></span>
-<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a>freq_rel_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem)<span class="sc">/</span><span class="fu">length</span>(pais_origem<span class="sc">$</span>individuo) <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a>freq_rel_cum</span>
-<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a>Podemos então, juntar todas as informações em uma única tabela de frequência:</span>
-<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a><span class="co"># criando uma única tablea de frequência</span></span>
-<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a>tabela_freq <span class="ot">&lt;-</span> <span class="fu">cbind</span>(freq_abs, freq_rel, freq_abs_cum, freq_rel_cum)</span>
-<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>tabela_freq</span>
-<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb19" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Fundamentos de Estatística"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Andre Barbato"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2021-10-01"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [estatística, r, notas de aula]</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "capa.jpg"</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="an">toccolor:</span><span class="co"> "blue"</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="an">toc-title:</span><span class="co"> "Nesta página" </span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilística e inferencial.</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="al">![Fonte: Unsplash](capa.jpg)</span>{fig-alt="Uso gratuito sob a Licença da Unsplash" fig-align="left" width="642"}</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tipos de variáveis</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>As variáveis podem ser classificadas em:</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Qualitativas**: são variáveis não métricas, atribuem categorias ou classificações. Podem atribuir duas ou mais categorias. A análise descritiva de variáveis qualitativas é feita por meio de tabelas de frequência e gráficos, pois tais variáveis não permitem o cálculo de medidas de posição e dispersão.</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    Exemplos: Escalas Likert; Faixa de renda; Nacionalidade; Estado civil; Escolaridade; Tipo de solo; Vacinado ou não; Tipos de comorbidades.</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    ## Escalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Quantitativas**: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas estatísticas, incluindo as medidas de posição e dispersão.</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    Exemplos: Idade; Renda (em R\$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa.</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estatísticas Descritivas</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>A técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tabelas de Frequência</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas, com uma abordagem semelhante à usada para variáveis qualitativas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas ou classes.</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>absoluta: contagem de ocorrência em uma categoria;</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>relativa: percentual de cada categoria;</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>acumulada: acumulo das frequências absolutas;</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>relativa acumulada: acumulo das frequências relativas.</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variáveis Qualitativas</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>Para demonstrar uma tabela de frequência no R, vamos utilizar uma base de dados em que foram coletados os países de origem de 300 pessoas em uma palestra. Veja o exemplo abaixo:</span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a><span class="co"># carregando o arquivo csv no ambiente do R</span></span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>pais_origem <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"freq_table.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a><span class="co"># visualizando o cabeçalho</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pais_origem, <span class="dv">10</span>)</span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>Temos então a nacionalidade de cada indivíduo. A nacionalidade é uma categoria atribuida a cada indivíduo, dessa forma, podemos criar uma tabela de frequência absoluta da seguinte forma:</span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência absoluta</span></span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>freq_abs <span class="ot">&lt;-</span> <span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem)</span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>freq_abs</span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>Para a frequência relativa, podemos calcular da seguinte forma:</span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência relativa</span></span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> <span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem)<span class="sc">/</span><span class="fu">length</span>(pais_origem<span class="sc">$</span>individuo) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a>freq_rel</span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a>Para a frequência absoluta acumulada, podemos calcular da seguinte forma:</span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência absoluta acumulada</span></span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a>freq_abs_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem))</span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a>freq_abs_cum</span>
+<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a>Da mesma forma, para a frequência relativa acumulada, podemos calcular da seguinte forma:</span>
+<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-103"><a href="#cb19-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-104"><a href="#cb19-104" aria-hidden="true" tabindex="-1"></a><span class="co"># tabela de frequência relativa acumulada</span></span>
+<span id="cb19-105"><a href="#cb19-105" aria-hidden="true" tabindex="-1"></a>freq_rel_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(pais_origem<span class="sc">$</span>pais_origem)<span class="sc">/</span><span class="fu">length</span>(pais_origem<span class="sc">$</span>individuo) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb19-106"><a href="#cb19-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-107"><a href="#cb19-107" aria-hidden="true" tabindex="-1"></a>freq_rel_cum</span>
+<span id="cb19-108"><a href="#cb19-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-109"><a href="#cb19-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-110"><a href="#cb19-110" aria-hidden="true" tabindex="-1"></a>Podemos então, juntar todas as informações em uma única tabela de frequência:</span>
+<span id="cb19-111"><a href="#cb19-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-114"><a href="#cb19-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-115"><a href="#cb19-115" aria-hidden="true" tabindex="-1"></a><span class="co"># criando uma única tablea de frequência</span></span>
+<span id="cb19-116"><a href="#cb19-116" aria-hidden="true" tabindex="-1"></a>tabela_freq <span class="ot">&lt;-</span> <span class="fu">cbind</span>(freq_abs, freq_rel, freq_abs_cum, freq_rel_cum)</span>
+<span id="cb19-117"><a href="#cb19-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-118"><a href="#cb19-118" aria-hidden="true" tabindex="-1"></a>tabela_freq</span>
+<span id="cb19-119"><a href="#cb19-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-120"><a href="#cb19-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-121"><a href="#cb19-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variáveis Quantitativas</span></span>
+<span id="cb19-122"><a href="#cb19-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-123"><a href="#cb19-123" aria-hidden="true" tabindex="-1"></a>Para exemplificar uma tabela de frequência para variáveis quantitativas contínuas, temos um banco de dados em que foi coletada a renda mensal de 50 pessoas.</span>
+<span id="cb19-124"><a href="#cb19-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-127"><a href="#cb19-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-128"><a href="#cb19-128" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o arquivo no ambiente do R</span></span>
+<span id="cb19-129"><a href="#cb19-129" aria-hidden="true" tabindex="-1"></a>renda_mensal <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"renda_mensal.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>, <span class="at">dec =</span> <span class="st">","</span>)</span>
+<span id="cb19-130"><a href="#cb19-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-131"><a href="#cb19-131" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(renda_mensal, <span class="dv">10</span>)</span>
+<span id="cb19-132"><a href="#cb19-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-133"><a href="#cb19-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-134"><a href="#cb19-134" aria-hidden="true" tabindex="-1"></a>Uma vez que a variável renda se trata de uma variável quantitativa contínua, primeiramente precisamos categorizá-la criando faixas de renda.</span>
+<span id="cb19-135"><a href="#cb19-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-136"><a href="#cb19-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r message=FALSE, warning=FALSE}</span></span>
+<span id="cb19-137"><a href="#cb19-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-138"><a href="#cb19-138" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-139"><a href="#cb19-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-140"><a href="#cb19-140" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando as faixas de renda</span></span>
+<span id="cb19-141"><a href="#cb19-141" aria-hidden="true" tabindex="-1"></a>renda_mensal <span class="ot">&lt;-</span> renda_mensal <span class="sc">|&gt;</span> </span>
+<span id="cb19-142"><a href="#cb19-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">faixa_renda =</span> <span class="fu">case_when</span>(renda <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">"0-2.000"</span>,</span>
+<span id="cb19-143"><a href="#cb19-143" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">4000</span> <span class="sc">~</span> <span class="st">"2.001-4.000"</span>,</span>
+<span id="cb19-144"><a href="#cb19-144" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">4000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">6000</span> <span class="sc">~</span> <span class="st">"4.001-6.000"</span>,</span>
+<span id="cb19-145"><a href="#cb19-145" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">6000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">8000</span> <span class="sc">~</span>  <span class="st">"6.001-8.000"</span>,</span>
+<span id="cb19-146"><a href="#cb19-146" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">8000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">10000</span> <span class="sc">~</span> <span class="st">"8.001-10.000"</span>, </span>
+<span id="cb19-147"><a href="#cb19-147" aria-hidden="true" tabindex="-1"></a>                                 renda <span class="sc">&gt;</span> <span class="dv">10000</span> <span class="sc">&amp;</span> renda <span class="sc">&lt;=</span> <span class="dv">12000</span> <span class="sc">~</span> <span class="st">"10.001-12.000"</span>))</span>
+<span id="cb19-148"><a href="#cb19-148" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(renda_mensal)</span>
+<span id="cb19-149"><a href="#cb19-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-150"><a href="#cb19-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-151"><a href="#cb19-151" aria-hidden="true" tabindex="-1"></a>A partir da categorização da variável renda podemos seguir com os passos para criação da tabela de frequência:</span>
+<span id="cb19-152"><a href="#cb19-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-155"><a href="#cb19-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-156"><a href="#cb19-156" aria-hidden="true" tabindex="-1"></a>r_freq_abs <span class="ot">&lt;-</span> <span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda)</span>
+<span id="cb19-157"><a href="#cb19-157" aria-hidden="true" tabindex="-1"></a>r_freq_abs_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda))</span>
+<span id="cb19-158"><a href="#cb19-158" aria-hidden="true" tabindex="-1"></a>r_freq_rel <span class="ot">&lt;-</span> <span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">/</span> <span class="fu">length</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb19-159"><a href="#cb19-159" aria-hidden="true" tabindex="-1"></a>r_freq_rel_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">table</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">/</span> <span class="fu">length</span>(renda_mensal<span class="sc">$</span>faixa_renda) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb19-160"><a href="#cb19-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-161"><a href="#cb19-161" aria-hidden="true" tabindex="-1"></a>r_tabela_freq <span class="ot">&lt;-</span> <span class="fu">cbind</span>(r_freq_abs, r_freq_rel, r_freq_abs_cum,r_freq_rel_cum)</span>
+<span id="cb19-162"><a href="#cb19-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-163"><a href="#cb19-163" aria-hidden="true" tabindex="-1"></a>r_tabela_freq</span>
+<span id="cb19-164"><a href="#cb19-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-165"><a href="#cb19-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-166"><a href="#cb19-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## Medidas de Posição</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
