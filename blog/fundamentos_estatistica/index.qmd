@@ -45,7 +45,7 @@ Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrênci
 
 -   relativa: percentual de cada categoria;
 
--   acumulada: acumulo das frequências absolutas;
+-   absoluta acumulada: acumulo das frequências absolutas;
 
 -   relativa acumulada: acumulo das frequências relativas.
 
@@ -74,7 +74,7 @@ Para a frequência relativa, podemos calcular da seguinte forma:
 
 ```{r}
 # tabela de frequência relativa
-freq_rel <- table(pais_origem$pais_origem)/length(pais_origem$individuo) * 100
+freq_rel <- table(pais_origem$pais_origem)/length(pais_origem$pais_origem) * 100
 
 freq_rel
 ```
@@ -92,7 +92,7 @@ Da mesma forma, para a frequência relativa acumulada, podemos calcular da segui
 
 ```{r}
 # tabela de frequência relativa acumulada
-freq_rel_cum <- cumsum(table(pais_origem$pais_origem)/length(pais_origem$individuo) * 100)
+freq_rel_cum <- cumsum(table(pais_origem$pais_origem)/length(pais_origem$pais_origem) * 100)
 
 freq_rel_cum
 ```
@@ -159,6 +159,50 @@ r_tabela_freq
 
 ## Medidas de Posição
 
-1:26
+São aplicadas apenas a variáveis do tipo quantitativas. São medidas que permite entender a posição como as variáveis estão posicionadas na distribuição.
 
+### Média
 
+É média aritmética simples para a variável, ou seja, é a soma dos valores (Xi) contidos na variável dividido pela quantidade total de observações (n).
+
+$$\bar{X} = \frac {\sum_{i=1}^{n} X_{i}} {n}$$
+
+### Mediana
+
+Trata-se do elemento central da distribuição da variável, considerando que a variável esteja com seus n valores ordenados de forma crescente. Metade dos valores da variável são maiores ou iguais ao valor da mediana e metade dos valores são menores ou iguais ao valor da mediana.
+
+$Md(X) = \frac {X_{\frac {n} {2}} + X_{\frac {n} {2} +1}} {2}$ , se n for par
+
+$Md(X) = X_{\big( \frac {n+1} {2}\big)}$ , se n for ímpar
+
+### Moda
+
+É o valor que aparece com maior frequência nas observações de uma variável. A moda também pode ser calculada para dados qualitativos. É possível que não exista a moda de uma variável (especialmente, se for uma variável contínua), isso ocorre quando nenhum valor se repete.
+
+### Percentis
+
+São os elementos da distribuição da variável que dividem as observações em cem partes iguais, considerando que a variável esteja com seus valores organizados de forma crescente.
+
+$$Pos(Pi) = \bigg[(n-1). \bigg( \frac {Pi} {100} \bigg) \bigg] +1$$
+
+### Quartis
+
+São os elementos da distribuição da variável que dividem as observações em quatro partes iguais, considerando que a variável esteja com seus valores organizados de forma crescente.
+
+-   1º Quartil: 25% das observações são menores do que o 1º quartil
+
+-   2º Quartil: trata-se da mediana
+
+-   3º Quartil: 25% das observações são maiores do que o 3º quartil
+
+### Decis
+
+São os elementos da distribuição da variável que dividem as observações em dez partes iguais, considerando que a variável esteja com seus valores organizados de forma crescente.
+
+-   1º Decil = 10º Percentil
+
+-   3º Decil = 30º Percentil
+
+-   8º Decil = 80º Percentil
+
+## Medidas de Dispersão
