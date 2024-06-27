@@ -1,0 +1,32 @@
+{
+  "about.qmd": {
+    "about.html": "6fc324ac"
+  },
+  "index.qmd": {
+    "index.html": "a42b27fa"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "4fdccaa9"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "5c471e1d"
+  },
+  "posts/new post/index.qmd": {
+    "index.html": "55ab9fec"
+  },
+  "posts/novo-post/index.qmd": {
+    "index.html": "e4975472"
+  },
+  "projects.qmd": {
+    "projects.html": "93669859"
+  },
+  "blog.qmd": {
+    "blog.html": "297ab149"
+  },
+  "blog/fundamentos_estatistica/index.qmd": {
+    "index.html": "248f0230"
+  },
+  "blog/IPCA_15/index.qmd": {
+    "index.html": "b4cfbcbd"
+  }
+}

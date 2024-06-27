@@ -1,0 +1,6 @@
+"0","#| warning: false |> |> <- <- <- <- <- <- <- |> "
+"0","# Carregar pacotes"
+"0","library(sidrar)"
+"0","library(tidyverse)"
+"0","library(highcharter)"
+"0","library(monochromeR)"

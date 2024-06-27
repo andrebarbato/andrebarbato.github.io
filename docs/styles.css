@@ -1,0 +1,17 @@
+/* css styles */
+.card{
+    border: 0px solid #ddd;
+    display: grid;
+    /*padding: 20px;*/
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+    transition: transform 0.3s, box-shadow 0.4s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}

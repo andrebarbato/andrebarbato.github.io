@@ -1,0 +1,208 @@
+---
+title: "Fundamentos de Estatística"
+author: "Andre Barbato"
+date: "2021-10-01"
+categories: [estatística, r, notas de aula]
+image: "capa.jpg"
+toc: true
+toccolor: "blue"
+toc-title: "Nesta página" 
+---
+
+Fundamentos de Estatística em R, cobrindo estatística descritiva, probabilística e inferencial.
+
+![Fonte: Unsplash](capa.jpg){fig-alt="Uso gratuito sob a Licença da Unsplash" fig-align="left" width="642"}
+
+# Introdução
+
+O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.
+
+## Tipos de variáveis
+
+As variáveis podem ser classificadas em:
+
+-   **Qualitativas**: são variáveis não métricas, atribuem categorias ou classificações. Podem atribuir duas ou mais categorias. A análise descritiva de variáveis qualitativas é feita por meio de tabelas de frequência e gráficos, pois tais variáveis não permitem o cálculo de medidas de posição e dispersão.
+
+    Exemplos: Escalas Likert; Faixa de renda; Nacionalidade; Estado civil; Escolaridade; Tipo de solo; Vacinado ou não; Tipos de comorbidades.
+
+    ::: callout-note
+    ## Escalas Likert são questionários cujas respostas são normalmente do tipo concordo totalmente, concordo parcialmente, discordo totalmente, discordo parcialmente, não concordo nem discordo etc.
+    :::
+
+-   **Quantitativas**: são variáveis métricas, atribuem contagem ou mensuração. Podem ser discretas ou contínuas. A análise descritiva de variáveis quantitativas pode ser feita por diversas ferramentas estatísticas, incluindo as medidas de posição e dispersão.
+
+    Exemplos: Idade; Renda (em R\$); Quantidade de filhos; Altura da pessoa (em cm); Peso (em kg); Retorno de ações na bolsa; Temperatura do ambiente; Lucro/prejuízo da empresa.
+
+# Estatísticas Descritivas
+
+A técnica aplica para descrever as variáveis vai depender do tipo. A princípio a análise pode ser Univariada (análise das variáveis individualmente) ou Bivariada (análise de variáveis em pares).
+
+## Tabelas de Frequência
+
+Normalmente usadas em variáveis qualitativas. Mostra a quantidade de ocorrências em uma determinada categoria. Pode também ser usada em variáveis quantitativas discretas, com uma abordagem semelhante a usada para variáveis qualitativas. Em variáveis quantitativas contínuas, no entanto, é necessário uma categorização ou distribuição em faixas ou classes.
+
+-   absoluta: contagem de ocorrência em uma categoria;
+
+-   relativa: percentual de cada categoria;
+
+-   absoluta acumulada: acumulo das frequências absolutas;
+
+-   relativa acumulada: acumulo das frequências relativas.
+
+### Variáveis Qualitativas
+
+Para demonstrar uma tabela de frequência no R, vamos utilizar uma base de dados em que foram coletados os países de origem de 300 pessoas em uma palestra. Veja o exemplo abaixo:
+
+```{r}
+# carregando o arquivo csv no ambiente do R
+pais_origem <- read.csv("freq_table.csv", sep = ";")
+
+# visualizando o cabeçalho
+head(pais_origem, 10)
+```
+
+A nacionalidade é uma categoria atribuida a cada indivíduo, dessa forma, podemos criar uma tabela de frequência absoluta da seguinte forma:
+
+```{r}
+# tabela de frequência absoluta
+freq_abs <- table(pais_origem$pais_origem)
+
+freq_abs
+```
+
+Para a frequência relativa, podemos calcular da seguinte forma:
+
+```{r}
+# tabela de frequência relativa
+freq_rel <- table(pais_origem$pais_origem)/length(pais_origem$pais_origem) * 100
+
+freq_rel
+```
+
+Para a frequência absoluta acumulada, podemos calcular da seguinte forma:
+
+```{r}
+# tabela de frequência absoluta acumulada
+freq_abs_cum <- cumsum(table(pais_origem$pais_origem))
+
+freq_abs_cum
+```
+
+Da mesma forma, para a frequência relativa acumulada, podemos calcular da seguinte forma:
+
+```{r}
+# tabela de frequência relativa acumulada
+freq_rel_cum <- cumsum(table(pais_origem$pais_origem)/length(pais_origem$pais_origem) * 100)
+
+freq_rel_cum
+```
+
+Podemos então, juntar todas as informações em uma única tabela de frequência:
+
+```{r}
+# criando uma única tablea de frequência
+tabela_freq <- cbind(freq_abs, freq_rel, freq_abs_cum, freq_rel_cum)
+
+tabela_freq
+```
+
+### Variáveis Quantitativas
+
+Para exemplificar uma tabela de frequência para variáveis quantitativas contínuas, temos um banco de dados em que foi coletada a renda mensal de 50 pessoas.
+
+```{r}
+# Carregando o arquivo no ambiente do R
+renda_mensal <- read.csv("renda_mensal.csv", sep = ";", dec = ",")
+
+head(renda_mensal, 10)
+```
+
+Uma vez que a variável renda se trata de uma variável quantitativa contínua, primeiramente precisamos categorizá-la criando faixas de renda.
+
+```{r message=FALSE, warning=FALSE}
+
+library(dplyr)
+
+# Criando as faixas de renda
+renda_mensal <- renda_mensal |> 
+  mutate(faixa_renda = case_when(renda <= 2000 ~ "0-2.000",
+                                 renda > 2000 & renda <= 4000 ~ "2.001-4.000",
+                                 renda > 4000 & renda <= 6000 ~ "4.001-6.000",
+                                 renda > 6000 & renda <= 8000 ~  "6.001-8.000",
+                                 renda > 8000 & renda <= 10000 ~ "8.001-10.000", 
+                                 renda > 10000 & renda <= 12000 ~ "10.001-12.000"))
+
+# Transformando a variável faixa_renda em factor e ordenando por níveis
+renda_mensal$faixa_renda <- factor(renda_mensal$faixa_renda,
+                                   levels = c("0-2.000",
+                                              "2.001-4.000",
+                                              "4.001-6.000",
+                                              "6.001-8.000",
+                                              "8.001-10.000",
+                                              "10.001-12.000"))
+
+head(renda_mensal)
+```
+
+A partir da categorização da variável renda podemos seguir com os passos para criação da tabela de frequência:
+
+```{r}
+r_freq_abs <- table(renda_mensal$faixa_renda)
+r_freq_abs_cum <- cumsum(table(renda_mensal$faixa_renda))
+r_freq_rel <- table(renda_mensal$faixa_renda) / length(renda_mensal$faixa_renda) * 100
+r_freq_rel_cum <- cumsum(table(renda_mensal$faixa_renda) / length(renda_mensal$faixa_renda) * 100)
+
+r_tabela_freq <- cbind(r_freq_abs, r_freq_rel, r_freq_abs_cum,r_freq_rel_cum)
+
+r_tabela_freq
+```
+
+## Medidas de Posição
+
+São aplicadas apenas a variáveis do tipo quantitativas. São medidas que permite entender a posição como as variáveis estão posicionadas na distribuição.
+
+### Média
+
+É média aritmética simples para a variável, ou seja, é a soma dos valores (Xi) contidos na variável dividido pela quantidade total de observações (n).
+
+$$\bar{X} = \frac {\sum_{i=1}^{n} X_{i}} {n}$$
+
+### Mediana
+
+Trata-se do elemento central da distribuição da variável, considerando que a variável esteja com seus n valores ordenados de forma crescente. Metade dos valores da variável são maiores ou iguais ao valor da mediana e metade dos valores são menores ou iguais ao valor da mediana.
+
+$Md(X) = \frac {X_{\frac {n} {2}} + X_{\frac {n} {2} +1}} {2}$ , se n for par
+
+$Md(X) = X_{\big( \frac {n+1} {2}\big)}$ , se n for ímpar
+
+### Moda
+
+É o valor que aparece com maior frequência nas observações de uma variável. A moda também pode ser calculada para dados qualitativos. É possível que não exista a moda de uma variável (especialmente, se for uma variável contínua), isso ocorre quando nenhum valor se repete.
+
+### Percentis
+
+São os elementos da distribuição da variável que dividem as observações em cem partes iguais, considerando que a variável esteja com seus valores organizados de forma crescente.
+
+$$Pos(Pi) = \bigg[(n-1). \bigg( \frac {Pi} {100} \bigg) \bigg] +1$$
+
+### Quartis
+
+São os elementos da distribuição da variável que dividem as observações em quatro partes iguais, considerando que a variável esteja com seus valores organizados de forma crescente.
+
+-   1º Quartil: 25% das observações são menores do que o 1º quartil
+
+-   2º Quartil: trata-se da mediana
+
+-   3º Quartil: 25% das observações são maiores do que o 3º quartil
+
+### Decis
+
+São os elementos da distribuição da variável que dividem as observações em dez partes iguais, considerando que a variável esteja com seus valores organizados de forma crescente.
+
+-   1º Decil = 10º Percentil
+
+-   3º Decil = 30º Percentil
+
+-   8º Decil = 80º Percentil
+
+## Medidas de Dispersão

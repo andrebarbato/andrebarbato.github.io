@@ -1,0 +1,5 @@
+"0","# carregando o arquivo csv no ambiente do R"
+"0","pais_origem <- read.csv(""freq_table.csv"", sep = "";"")"
+"0",""
+"0","# visualizando o cabeçalho"
+"0","head(pais_origem, 10)"

@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+website:
+  title: "Andre Barbato"
+  favicon: "images/favicon.png"
+  navbar:
+    right:
+      - blog.qmd
+      - about.qmd
+      - icon: github
+        href: https://github.com/andrebarbato
+      - icon: linkedin
+        href: https://www.linkedin.com/in/andrebarbato/
+  search: true
+format:
+  html:
+    theme:
+      light: [darkly,theme_dark_custom.scss]
+      dark: darkly
+    css: styles.css
+    code-link: true
+    code-tools: true
+    code-fold: show
+    highlight-style: github
+
+editor: visual
+
