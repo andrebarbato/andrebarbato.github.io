@@ -23,7 +23,7 @@ O início de uma análise estatística começa sempre pelo tipo de variável que
 library(sidrar)
 library(tidyverse)
 library(echarts4r)
-library(monochromeR)
+library(RColorBrewer)
 ```
 
 ```{r}
@@ -82,7 +82,8 @@ ipca_15 <- ipca_15 |>
 # Gráfico de evolução do IPCA-15
 ipca_15 |> 
   filter(tipo_abertura == "Geral") |> 
-  echarts4r::e_charts(x = data) |> 
+  echarts4r::e_charts(x = data,
+                      backgroundColor = "rgb(255,255,255)") |> 
   echarts4r::e_line(serie = valor,
                     name = "IPCA-15",
                     color = "darkblue",
@@ -105,30 +106,20 @@ ipca_15 |>
   select(data, cod, valor) |> 
   pivot_wider(names_from = cod,
               values_from = valor) |> 
-  e_charts(data) |> 
-  e_bar(1, name = "1. Alimentação e bebidas", color = paleta[1], stack = "grp") |> 
-  e_bar(2, name = "2. Habitação", color = paleta[2], stack = "grp") |> 
-  e_bar(3, name = "3. Artigos de residência", color = paleta[3], stack = "grp") |> 
-  e_bar(4, name = "4. Vestuário", color = paleta[4], stack = "grp") |>
-  e_bar(5, name = "5. Transportes", color = paleta[5], stack = "grp") |>
-  e_bar(6, name = "6. Saúde e cuidados pessoais", color = paleta[6], stack = "grp") |>
-  e_bar(7, name = "7. Despesas pessoais", color = paleta[7], stack = "grp") |>
-  e_bar(8, name = "8. Educação", color = paleta[8], stack = "grp") |>
-  e_bar(9, name = "9. Comunicação", color = paleta[9], stack = "grp") |>
-  e_tooltip(trigger = "axis", backgroundColor = "rgba(255,255,255,0.9)") |>
-  e_legend(show = FALSE) |> 
+  echarts4r::e_charts(data, backgroundColor = "rgb(255,255,255)") |> 
+  echarts4r::e_bar(1, name = "1. Alimentação e bebidas", color = paleta[1], stack = "grp") |> 
+  echarts4r::e_bar(2, name = "2. Habitação", color = paleta[2], stack = "grp") |> 
+  echarts4r::e_bar(3, name = "3. Artigos de residência", color = paleta[3], stack = "grp") |> 
+  echarts4r::e_bar(4, name = "4. Vestuário", color = paleta[4], stack = "grp") |>
+  echarts4r::e_bar(5, name = "5. Transportes", color = paleta[5], stack = "grp") |>
+  echarts4r::e_bar(6, name = "6. Saúde e cuidados pessoais", color = paleta[6], stack = "grp") |>
+  echarts4r::e_bar(7, name = "7. Despesas pessoais", color = paleta[7], stack = "grp") |>
+  echarts4r::e_bar(8, name = "8. Educação", color = paleta[8], stack = "grp") |>
+  echarts4r::e_bar(9, name = "9. Comunicação", color = paleta[9], stack = "grp") |>
+  echarts4r::e_tooltip(trigger = "axis",
+                       borderColor = "lightgrey",
+                       backgroundColor = "rgba(255,255,255,0.9)") |>
+  echarts4r::e_legend(show = FALSE) |> 
   echarts4r::e_title("Impacto dos grupos de produto e serviçoes no IPCA-15") |> 
   echarts4r::e_axis_labels(y = "IPCA-15 mensal (%)")
-  
-  # highcharter::hchart("column",
-  #                     hcaes(x = data,
-  #                           y = valor,
-  #                           group = desc_abertura),
-  #                     name = ipca_grupos_nomes,
-  #                     color = ipca_grupos_pal,
-  #                     stacking = "normal") |>
-  # highcharter::hc_title(text = "Impacto dos grupos de produto e serviçoes no IPCA-15",
-  #                       align = "left") |> 
-  # highcharter::hc_xAxis(title = list(text = "Data")) |> 
-  # highcharter::hc_yAxis(title = list(text = "Variação Mensal (%)"))
 ```
