@@ -6,7 +6,8 @@ categories: [Inflação, R, IBGE, SIDRA]
 image: "capa.jpg"
 toc: true
 toccolor: "blue"
-toc-title: "Nesta página" 
+toc-title: "Nesta página"
+freeze: true
 ---
 
 IPCA-15 sobe 0,39% em Junho e fica em 4,06% no acumulado dos últimos 12 meses

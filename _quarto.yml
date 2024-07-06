@@ -5,6 +5,7 @@ website:
   title: "Andre Barbato"
   favicon: "images/favicon.png"
   navbar:
+    logo: "images/favicon.png"
     right:
       - blog.qmd
       - about.qmd
