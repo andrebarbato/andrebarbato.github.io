@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.253">
+<meta name="generator" content="quarto-1.5.55">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Andre Barbato">
 <meta name="dcterms.date" content="2024-06-26">
-<title>Andre Barbato - Acompanhando a inflação com a linguagem R</title>
+<title>Acompanhando a inflação com a linguagem R – Andre Barbato</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -16,11 +16,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -45,43 +46,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -108,7 +79,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -117,8 +94,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 <script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="../../site_libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="../../site_libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="../../site_libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="../../site_libs/echarts4r-binding-0.4.5/echarts4r.js"></script><link rel="stylesheet" href="../../styles.css">
@@ -126,41 +105,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Andre Barbato</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item">
-    <a class="nav-link" href="../../blog.html">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/andrebarbato"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/andrebarbato"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/andrebarbato/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/andrebarbato/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
@@ -205,16 +186,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
+
 </header><p>IPCA-15 sobe 0,39% em Junho e fica em 4,06% no acumulado dos últimos 12 meses</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure"><p><img src="capa.jpg" alt="Uso gratuito sob a Licença da Unsplash" width="642" height="427" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Fonte: Unsplash</figcaption><p></p>
-</figure>
+<figcaption>Fonte: Unsplash</figcaption></figure>
 </div>
 <section id="introdução" class="level1"><h1>Introdução</h1>
 <p>O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.</p>
 <div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Carregar pacotes</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Carregar pacotes</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rpradosiqueira/sidrar/">sidrar</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/">echarts4r</a></span><span class="op">)</span></span>
@@ -222,19 +203,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recuperando os dados via SIDRA</span></span>
-<span><span class="va">ipca_15</span> <span class="op">&lt;-</span> <span class="fu">sidrar</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sidrar/man/get_sidra.html">get_sidra</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="fl">7062</span>, <span class="co"># Tabela do IPCA-15</span></span>
-<span>  variable <span class="op">=</span> <span class="fl">355</span>, <span class="co"># Variável: IPCA-15 Variação Mensal (%)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recuperando os dados via SIDRA</span></span>
+<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="fu">sidrar</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sidrar/man/get_sidra.html">get_sidra</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="fl">7060</span>, <span class="co"># Tabela do IPCA --- 7062 tabela IPCA-15</span></span>
+<span>  variable <span class="op">=</span> <span class="fl">63</span>, <span class="co"># Variável: 355 IPCA-15 Variação Mensal (%)</span></span>
 <span>  period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"last"</span> <span class="op">=</span> <span class="fl">24</span><span class="op">)</span> <span class="co"># Período últimos 24 meses  </span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Tratamento dos dados</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Tratamento dos dados</span></span>
 <span></span>
 <span><span class="co">## Seleção das colunas</span></span>
-<span><span class="va">ipca_15</span> <span class="op">&lt;-</span> <span class="va">ipca_15</span> <span class="op">|&gt;</span></span>
+<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="va">ipca</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>valor <span class="op">=</span> <span class="st">'Valor'</span>,</span>
 <span>         cod_mes <span class="op">=</span> <span class="st">'Mês (Código)'</span>,</span>
 <span>         cod_abertura <span class="op">=</span> <span class="st">'Geral, grupo, subgrupo, item e subitem (Código)'</span>,</span>
@@ -243,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span></span>
 <span></span>
 <span><span class="co">## Separando a coluna desc_abertura</span></span>
-<span><span class="va">ipca_15</span> <span class="op">&lt;-</span> <span class="va">ipca_15</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="va">ipca</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span></span>
 <span>    cols <span class="op">=</span> <span class="va">desc_abertura</span>,</span>
 <span>    delim <span class="op">=</span> <span class="st">"."</span>,</span>
@@ -253,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Criando colunas</span></span>
-<span><span class="va">ipca_15</span> <span class="op">&lt;-</span> <span class="va">ipca_15</span> <span class="op">|&gt;</span></span>
+<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="va">ipca</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    <span class="co"># Criando coluna data a partir da coluna cod_mes</span></span>
 <span>    data <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"01"</span>,</span>
@@ -271,8 +252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Gráfico de evolução do IPCA-15</span></span>
-<span><span class="va">ipca_15</span> <span class="op">|&gt;</span> </span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Gráfico de evolução do IPCA-15</span></span>
+<span><span class="va">ipca</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tipo_abertura</span> <span class="op">==</span> <span class="st">"Geral"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">data</span>,</span>
 <span>                      backgroundColor <span class="op">=</span> <span class="st">"rgb(255,255,255)"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -287,16 +268,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_legend.html">e_legend</a></span><span class="op">(</span>show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_axis_labels.html">e_axis_labels</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"IPCA-15 mensal (%)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div class="echarts4r html-widget html-fill-item" id="htmlwidget-e10d009480fb6505e876" style="width:100%;height:500px;"></div>
-<script type="application/json" data-for="htmlwidget-e10d009480fb6505e876">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"backgroundColor":"rgb(255,255,255)","yAxis":[{"show":true,"name":"IPCA-15 mensal (%)"}],"xAxis":[{"data":["2022-07-01","2022-08-01","2022-09-01","2022-10-01","2022-11-01","2022-12-01","2023-01-01","2023-02-01","2023-03-01","2023-04-01","2023-05-01","2023-06-01","2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01"],"type":"time","boundaryGap":true,"name":""}],"legend":{"data":["IPCA-15"],"show":false,"type":"plain"},"series":[{"data":[{"value":["2022-07-01"," 0.13"]},{"value":["2022-08-01","-0.73"]},{"value":["2022-09-01","-0.37"]},{"value":["2022-10-01"," 0.16"]},{"value":["2022-11-01"," 0.53"]},{"value":["2022-12-01"," 0.52"]},{"value":["2023-01-01"," 0.55"]},{"value":["2023-02-01"," 0.76"]},{"value":["2023-03-01"," 0.69"]},{"value":["2023-04-01"," 0.57"]},{"value":["2023-05-01"," 0.51"]},{"value":["2023-06-01"," 0.04"]},{"value":["2023-07-01","-0.07"]},{"value":["2023-08-01"," 0.28"]},{"value":["2023-09-01"," 0.35"]},{"value":["2023-10-01"," 0.21"]},{"value":["2023-11-01"," 0.33"]},{"value":["2023-12-01"," 0.40"]},{"value":["2024-01-01"," 0.31"]},{"value":["2024-02-01"," 0.78"]},{"value":["2024-03-01"," 0.36"]},{"value":["2024-04-01"," 0.21"]},{"value":["2024-05-01"," 0.44"]},{"value":["2024-06-01"," 0.39"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"IPCA-15","type":"line","coordinateSystem":"cartesian2d","color":"darkblue","smooth":false}],"tooltip":{"trigger":"axis","borderColor":"darkblue","backgroundColor":"rgba(255,255,255,0.9)"},"title":[{"text":"Evolução do IPCA-15"}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="echarts4r html-widget html-fill-item" id="htmlwidget-e308522c972f0aed70d2" style="width:100%;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-e308522c972f0aed70d2">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"backgroundColor":"rgb(255,255,255)","yAxis":[{"show":true,"name":"IPCA-15 mensal (%)"}],"xAxis":[{"data":["2022-08-01","2022-09-01","2022-10-01","2022-11-01","2022-12-01","2023-01-01","2023-02-01","2023-03-01","2023-04-01","2023-05-01","2023-06-01","2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01","2024-07-01"],"type":"time","boundaryGap":true,"name":""}],"legend":{"data":["IPCA-15"],"show":false,"type":"plain"},"series":[{"data":[{"value":["2022-08-01","-0.36"]},{"value":["2022-09-01","-0.29"]},{"value":["2022-10-01"," 0.59"]},{"value":["2022-11-01"," 0.41"]},{"value":["2022-12-01"," 0.62"]},{"value":["2023-01-01"," 0.53"]},{"value":["2023-02-01"," 0.84"]},{"value":["2023-03-01"," 0.71"]},{"value":["2023-04-01"," 0.61"]},{"value":["2023-05-01"," 0.23"]},{"value":["2023-06-01","-0.08"]},{"value":["2023-07-01"," 0.12"]},{"value":["2023-08-01"," 0.23"]},{"value":["2023-09-01"," 0.26"]},{"value":["2023-10-01"," 0.24"]},{"value":["2023-11-01"," 0.28"]},{"value":["2023-12-01"," 0.56"]},{"value":["2024-01-01"," 0.42"]},{"value":["2024-02-01"," 0.83"]},{"value":["2024-03-01"," 0.16"]},{"value":["2024-04-01"," 0.38"]},{"value":["2024-05-01"," 0.46"]},{"value":["2024-06-01"," 0.21"]},{"value":["2024-07-01"," 0.38"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"IPCA-15","type":"line","coordinateSystem":"cartesian2d","color":"darkblue","smooth":false}],"tooltip":{"trigger":"axis","borderColor":"darkblue","backgroundColor":"rgba(255,255,255,0.9)"},"title":[{"text":"Evolução do IPCA-15"}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Criando a paleta de cores</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Criando a paleta de cores</span></span>
 <span><span class="va">paleta</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, </span>
 <span>                                   name <span class="op">=</span> <span class="st">"Spectral"</span><span class="op">)</span></span>
 <span><span class="co"># Gráfico de colunas empilhadas</span></span>
-<span><span class="va">ipca_15</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">ipca</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tipo_abertura</span> <span class="op">==</span> <span class="st">"Grupo"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">cod</span>, <span class="va">valor</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">cod</span>,</span>
@@ -316,10 +297,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>                       backgroundColor <span class="op">=</span> <span class="st">"rgba(255,255,255,0.9)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_legend.html">e_legend</a></span><span class="op">(</span>show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_title.html">e_title</a></span><span class="op">(</span><span class="st">"Impacto dos grupos de produto e serviçoes no IPCA-15"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_axis_labels.html">e_axis_labels</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"IPCA-15 mensal (%)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_axis_labels.html">e_axis_labels</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"IPCA var. mensal (%)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div class="echarts4r html-widget html-fill-item" id="htmlwidget-e48c5368a66e0d93dcd9" style="width:100%;height:500px;"></div>
-<script type="application/json" data-for="htmlwidget-e48c5368a66e0d93dcd9">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"backgroundColor":"rgb(255,255,255)","yAxis":[{"show":true,"name":"IPCA-15 mensal (%)"}],"xAxis":[{"data":["2022-07-01","2022-08-01","2022-09-01","2022-10-01","2022-11-01","2022-12-01","2023-01-01","2023-02-01","2023-03-01","2023-04-01","2023-05-01","2023-06-01","2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01"],"type":"time","boundaryGap":true,"name":""}],"legend":{"data":["1. Alimentação e bebidas","2. Habitação","3. Artigos de residência","4. Vestuário","5. Transportes","6. Saúde e cuidados pessoais","7. Despesas pessoais","8. Educação","9. Comunicação"],"show":false,"type":"plain"},"series":[{"data":[{"value":["2022-07-01"," 1.16"]},{"value":["2022-08-01"," 1.12"]},{"value":["2022-09-01","-0.47"]},{"value":["2022-10-01"," 0.21"]},{"value":["2022-11-01"," 0.54"]},{"value":["2022-12-01"," 0.69"]},{"value":["2023-01-01"," 0.55"]},{"value":["2023-02-01"," 0.39"]},{"value":["2023-03-01"," 0.20"]},{"value":["2023-04-01"," 0.04"]},{"value":["2023-05-01"," 0.94"]},{"value":["2023-06-01","-0.51"]},{"value":["2023-07-01","-0.40"]},{"value":["2023-08-01","-0.65"]},{"value":["2023-09-01","-0.77"]},{"value":["2023-10-01","-0.31"]},{"value":["2023-11-01"," 0.82"]},{"value":["2023-12-01"," 0.54"]},{"value":["2024-01-01"," 1.53"]},{"value":["2024-02-01"," 0.97"]},{"value":["2024-03-01"," 0.91"]},{"value":["2024-04-01"," 0.61"]},{"value":["2024-05-01"," 0.26"]},{"value":["2024-06-01"," 0.98"]}],"name":"1. Alimentação e bebidas","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#D53E4F","stack":"grp"},{"data":[{"value":["2022-07-01","-0.78"]},{"value":["2022-08-01","-0.37"]},{"value":["2022-09-01"," 0.47"]},{"value":["2022-10-01"," 0.28"]},{"value":["2022-11-01"," 0.48"]},{"value":["2022-12-01"," 0.40"]},{"value":["2023-01-01"," 0.17"]},{"value":["2023-02-01"," 0.63"]},{"value":["2023-03-01"," 0.81"]},{"value":["2023-04-01"," 0.48"]},{"value":["2023-05-01"," 0.43"]},{"value":["2023-06-01"," 0.96"]},{"value":["2023-07-01","-0.94"]},{"value":["2023-08-01"," 1.08"]},{"value":["2023-09-01"," 0.30"]},{"value":["2023-10-01"," 0.26"]},{"value":["2023-11-01"," 0.20"]},{"value":["2023-12-01"," 0.48"]},{"value":["2024-01-01"," 0.33"]},{"value":["2024-02-01"," 0.14"]},{"value":["2024-03-01"," 0.19"]},{"value":["2024-04-01"," 0.07"]},{"value":["2024-05-01"," 0.25"]},{"value":["2024-06-01"," 0.63"]}],"name":"2. Habitação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#F46D43","stack":"grp"},{"data":[{"value":["2022-07-01"," 0.39"]},{"value":["2022-08-01"," 0.08"]},{"value":["2022-09-01"," 0.24"]},{"value":["2022-10-01","-0.35"]},{"value":["2022-11-01"," 0.54"]},{"value":["2022-12-01","-0.46"]},{"value":["2023-01-01"," 0.38"]},{"value":["2023-02-01"," 0.71"]},{"value":["2023-03-01","-0.18"]},{"value":["2023-04-01"," 0.07"]},{"value":["2023-05-01","-0.28"]},{"value":["2023-06-01","-0.01"]},{"value":["2023-07-01","-0.40"]},{"value":["2023-08-01"," 0.01"]},{"value":["2023-09-01","-0.47"]},{"value":["2023-10-01"," 0.05"]},{"value":["2023-11-01"," 0.24"]},{"value":["2023-12-01","-0.15"]},{"value":["2024-01-01"," 0.26"]},{"value":["2024-02-01"," 0.45"]},{"value":["2024-03-01","-0.58"]},{"value":["2024-04-01"," 0.03"]},{"value":["2024-05-01","-0.44"]},{"value":["2024-06-01","-0.01"]}],"name":"3. Artigos de residência","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FDAE61","stack":"grp"},{"data":[{"value":["2022-07-01"," 1.39"]},{"value":["2022-08-01"," 0.76"]},{"value":["2022-09-01"," 1.66"]},{"value":["2022-10-01"," 1.43"]},{"value":["2022-11-01"," 1.48"]},{"value":["2022-12-01"," 1.16"]},{"value":["2023-01-01"," 0.42"]},{"value":["2023-02-01","-0.05"]},{"value":["2023-03-01"," 0.11"]},{"value":["2023-04-01"," 0.39"]},{"value":["2023-05-01"," 0.35"]},{"value":["2023-06-01"," 0.79"]},{"value":["2023-07-01"," 0.04"]},{"value":["2023-08-01","-0.03"]},{"value":["2023-09-01"," 0.41"]},{"value":["2023-10-01"," 0.33"]},{"value":["2023-11-01"," 0.55"]},{"value":["2023-12-01"," 0.03"]},{"value":["2024-01-01"," 0.22"]},{"value":["2024-02-01","-0.39"]},{"value":["2024-03-01","-0.22"]},{"value":["2024-04-01"," 0.41"]},{"value":["2024-05-01"," 0.66"]},{"value":["2024-06-01"," 0.30"]}],"name":"4. Vestuário","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FEE08B","stack":"grp"},{"data":[{"value":["2022-07-01","-1.08"]},{"value":["2022-08-01","-5.24"]},{"value":["2022-09-01","-2.35"]},{"value":["2022-10-01","-0.64"]},{"value":["2022-11-01"," 0.49"]},{"value":["2022-12-01"," 0.85"]},{"value":["2023-01-01"," 0.17"]},{"value":["2023-02-01"," 0.08"]},{"value":["2023-03-01"," 1.50"]},{"value":["2023-04-01"," 1.44"]},{"value":["2023-05-01","-0.04"]},{"value":["2023-06-01","-0.55"]},{"value":["2023-07-01"," 0.63"]},{"value":["2023-08-01"," 0.23"]},{"value":["2023-09-01"," 2.02"]},{"value":["2023-10-01"," 0.78"]},{"value":["2023-11-01"," 0.18"]},{"value":["2023-12-01"," 0.77"]},{"value":["2024-01-01","-1.13"]},{"value":["2024-02-01"," 0.15"]},{"value":["2024-03-01"," 0.43"]},{"value":["2024-04-01","-0.49"]},{"value":["2024-05-01"," 0.77"]},{"value":["2024-06-01","-0.23"]}],"name":"5. Transportes","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FFFFBF","stack":"grp"},{"data":[{"value":["2022-07-01","0.71"]},{"value":["2022-08-01","0.81"]},{"value":["2022-09-01","0.94"]},{"value":["2022-10-01","0.80"]},{"value":["2022-11-01","0.91"]},{"value":["2022-12-01","0.40"]},{"value":["2023-01-01","1.10"]},{"value":["2023-02-01","0.55"]},{"value":["2023-03-01","1.18"]},{"value":["2023-04-01","1.04"]},{"value":["2023-05-01","1.49"]},{"value":["2023-06-01","0.19"]},{"value":["2023-07-01","0.07"]},{"value":["2023-08-01","0.81"]},{"value":["2023-09-01","0.17"]},{"value":["2023-10-01","0.28"]},{"value":["2023-11-01","0.08"]},{"value":["2023-12-01","0.14"]},{"value":["2024-01-01","0.56"]},{"value":["2024-02-01","0.76"]},{"value":["2024-03-01","0.61"]},{"value":["2024-04-01","0.78"]},{"value":["2024-05-01","1.07"]},{"value":["2024-06-01","0.57"]}],"name":"6. Saúde e cuidados pessoais","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#E6F598","stack":"grp"},{"data":[{"value":["2022-07-01"," 0.79"]},{"value":["2022-08-01"," 0.81"]},{"value":["2022-09-01"," 0.83"]},{"value":["2022-10-01"," 0.57"]},{"value":["2022-11-01"," 0.27"]},{"value":["2022-12-01"," 0.39"]},{"value":["2023-01-01"," 0.57"]},{"value":["2023-02-01"," 0.63"]},{"value":["2023-03-01"," 0.28"]},{"value":["2023-04-01"," 0.28"]},{"value":["2023-05-01"," 0.40"]},{"value":["2023-06-01"," 0.52"]},{"value":["2023-07-01"," 0.38"]},{"value":["2023-08-01"," 0.60"]},{"value":["2023-09-01"," 0.35"]},{"value":["2023-10-01"," 0.31"]},{"value":["2023-11-01"," 0.52"]},{"value":["2023-12-01"," 0.56"]},{"value":["2024-01-01"," 0.56"]},{"value":["2024-02-01"," 0.46"]},{"value":["2024-03-01","-0.07"]},{"value":["2024-04-01"," 0.40"]},{"value":["2024-05-01"," 0.18"]},{"value":["2024-06-01"," 0.25"]}],"name":"7. Despesas pessoais","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#ABDDA4","stack":"grp"},{"data":[{"value":["2022-07-01","0.07"]},{"value":["2022-08-01","0.61"]},{"value":["2022-09-01","0.12"]},{"value":["2022-10-01","0.19"]},{"value":["2022-11-01","0.05"]},{"value":["2022-12-01","0.00"]},{"value":["2023-01-01","0.36"]},{"value":["2023-02-01","6.41"]},{"value":["2023-03-01","0.08"]},{"value":["2023-04-01","0.11"]},{"value":["2023-05-01","0.07"]},{"value":["2023-06-01","0.04"]},{"value":["2023-07-01","0.11"]},{"value":["2023-08-01","0.71"]},{"value":["2023-09-01","0.05"]},{"value":["2023-10-01","0.07"]},{"value":["2023-11-01","0.03"]},{"value":["2023-12-01","0.05"]},{"value":["2024-01-01","0.39"]},{"value":["2024-02-01","5.07"]},{"value":["2024-03-01","0.14"]},{"value":["2024-04-01","0.05"]},{"value":["2024-05-01","0.11"]},{"value":["2024-06-01","0.05"]}],"name":"8. Educação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#66C2A5","stack":"grp"},{"data":[{"value":["2022-07-01","-0.05"]},{"value":["2022-08-01","-0.30"]},{"value":["2022-09-01","-2.74"]},{"value":["2022-10-01","-0.42"]},{"value":["2022-11-01"," 0.00"]},{"value":["2022-12-01"," 0.18"]},{"value":["2023-01-01"," 2.36"]},{"value":["2023-02-01"," 0.78"]},{"value":["2023-03-01"," 0.75"]},{"value":["2023-04-01"," 0.06"]},{"value":["2023-05-01"," 0.02"]},{"value":["2023-06-01"," 0.11"]},{"value":["2023-07-01","-0.17"]},{"value":["2023-08-01"," 0.04"]},{"value":["2023-09-01","-0.15"]},{"value":["2023-10-01","-0.29"]},{"value":["2023-11-01","-0.22"]},{"value":["2023-12-01","-0.46"]},{"value":["2024-01-01","-0.03"]},{"value":["2024-02-01"," 1.67"]},{"value":["2024-03-01","-0.04"]},{"value":["2024-04-01"," 0.17"]},{"value":["2024-05-01"," 0.18"]},{"value":["2024-06-01"," 0.17"]}],"name":"9. Comunicação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#3288BD","stack":"grp"}],"tooltip":{"trigger":"axis","borderColor":"lightgrey","backgroundColor":"rgba(255,255,255,0.9)"},"title":[{"text":"Impacto dos grupos de produto e serviçoes no IPCA-15"}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="echarts4r html-widget html-fill-item" id="htmlwidget-a70403f575f497239f70" style="width:100%;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-a70403f575f497239f70">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"backgroundColor":"rgb(255,255,255)","yAxis":[{"show":true,"name":"IPCA var. mensal (%)"}],"xAxis":[{"data":["2022-08-01","2022-09-01","2022-10-01","2022-11-01","2022-12-01","2023-01-01","2023-02-01","2023-03-01","2023-04-01","2023-05-01","2023-06-01","2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01","2024-07-01"],"type":"time","boundaryGap":true,"name":""}],"legend":{"data":["1. Alimentação e bebidas","2. Habitação","3. Artigos de residência","4. Vestuário","5. Transportes","6. Saúde e cuidados pessoais","7. Despesas pessoais","8. Educação","9. Comunicação"],"show":false,"type":"plain"},"series":[{"data":[{"value":["2022-08-01"," 0.24"]},{"value":["2022-09-01","-0.51"]},{"value":["2022-10-01"," 0.72"]},{"value":["2022-11-01"," 0.53"]},{"value":["2022-12-01"," 0.66"]},{"value":["2023-01-01"," 0.59"]},{"value":["2023-02-01"," 0.16"]},{"value":["2023-03-01"," 0.05"]},{"value":["2023-04-01"," 0.71"]},{"value":["2023-05-01"," 0.16"]},{"value":["2023-06-01","-0.66"]},{"value":["2023-07-01","-0.46"]},{"value":["2023-08-01","-0.85"]},{"value":["2023-09-01","-0.71"]},{"value":["2023-10-01"," 0.31"]},{"value":["2023-11-01"," 0.63"]},{"value":["2023-12-01"," 1.11"]},{"value":["2024-01-01"," 1.38"]},{"value":["2024-02-01"," 0.95"]},{"value":["2024-03-01"," 0.53"]},{"value":["2024-04-01"," 0.70"]},{"value":["2024-05-01"," 0.62"]},{"value":["2024-06-01"," 0.44"]},{"value":["2024-07-01","-1.00"]}],"name":"1. Alimentação e bebidas","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#D53E4F","stack":"grp"},{"data":[{"value":["2022-08-01"," 0.10"]},{"value":["2022-09-01"," 0.60"]},{"value":["2022-10-01"," 0.34"]},{"value":["2022-11-01"," 0.51"]},{"value":["2022-12-01"," 0.20"]},{"value":["2023-01-01"," 0.33"]},{"value":["2023-02-01"," 0.82"]},{"value":["2023-03-01"," 0.57"]},{"value":["2023-04-01"," 0.48"]},{"value":["2023-05-01"," 0.67"]},{"value":["2023-06-01"," 0.69"]},{"value":["2023-07-01","-1.01"]},{"value":["2023-08-01"," 1.11"]},{"value":["2023-09-01"," 0.47"]},{"value":["2023-10-01"," 0.02"]},{"value":["2023-11-01"," 0.48"]},{"value":["2023-12-01"," 0.34"]},{"value":["2024-01-01"," 0.25"]},{"value":["2024-02-01"," 0.27"]},{"value":["2024-03-01"," 0.19"]},{"value":["2024-04-01","-0.01"]},{"value":["2024-05-01"," 0.67"]},{"value":["2024-06-01"," 0.25"]},{"value":["2024-07-01"," 0.77"]}],"name":"2. Habitação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#F46D43","stack":"grp"},{"data":[{"value":["2022-08-01"," 0.42"]},{"value":["2022-09-01","-0.13"]},{"value":["2022-10-01"," 0.39"]},{"value":["2022-11-01","-0.68"]},{"value":["2022-12-01"," 0.64"]},{"value":["2023-01-01"," 0.70"]},{"value":["2023-02-01"," 0.11"]},{"value":["2023-03-01","-0.27"]},{"value":["2023-04-01"," 0.17"]},{"value":["2023-05-01","-0.23"]},{"value":["2023-06-01","-0.42"]},{"value":["2023-07-01"," 0.04"]},{"value":["2023-08-01","-0.04"]},{"value":["2023-09-01","-0.58"]},{"value":["2023-10-01"," 0.46"]},{"value":["2023-11-01","-0.42"]},{"value":["2023-12-01"," 0.76"]},{"value":["2024-01-01"," 0.22"]},{"value":["2024-02-01","-0.07"]},{"value":["2024-03-01","-0.04"]},{"value":["2024-04-01","-0.26"]},{"value":["2024-05-01","-0.53"]},{"value":["2024-06-01"," 0.19"]},{"value":["2024-07-01"," 0.48"]}],"name":"3. Artigos de residência","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FDAE61","stack":"grp"},{"data":[{"value":["2022-08-01"," 1.69"]},{"value":["2022-09-01"," 1.77"]},{"value":["2022-10-01"," 1.22"]},{"value":["2022-11-01"," 1.10"]},{"value":["2022-12-01"," 1.52"]},{"value":["2023-01-01","-0.27"]},{"value":["2023-02-01","-0.24"]},{"value":["2023-03-01"," 0.31"]},{"value":["2023-04-01"," 0.79"]},{"value":["2023-05-01"," 0.47"]},{"value":["2023-06-01"," 0.35"]},{"value":["2023-07-01","-0.24"]},{"value":["2023-08-01"," 0.54"]},{"value":["2023-09-01"," 0.38"]},{"value":["2023-10-01"," 0.45"]},{"value":["2023-11-01","-0.35"]},{"value":["2023-12-01"," 0.70"]},{"value":["2024-01-01"," 0.14"]},{"value":["2024-02-01","-0.44"]},{"value":["2024-03-01"," 0.03"]},{"value":["2024-04-01"," 0.55"]},{"value":["2024-05-01"," 0.50"]},{"value":["2024-06-01"," 0.02"]},{"value":["2024-07-01","-0.02"]}],"name":"4. Vestuário","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FEE08B","stack":"grp"},{"data":[{"value":["2022-08-01","-3.37"]},{"value":["2022-09-01","-1.98"]},{"value":["2022-10-01"," 0.58"]},{"value":["2022-11-01"," 0.83"]},{"value":["2022-12-01"," 0.21"]},{"value":["2023-01-01"," 0.55"]},{"value":["2023-02-01"," 0.37"]},{"value":["2023-03-01"," 2.11"]},{"value":["2023-04-01"," 0.56"]},{"value":["2023-05-01","-0.57"]},{"value":["2023-06-01","-0.41"]},{"value":["2023-07-01"," 1.50"]},{"value":["2023-08-01"," 0.34"]},{"value":["2023-09-01"," 1.40"]},{"value":["2023-10-01"," 0.35"]},{"value":["2023-11-01"," 0.27"]},{"value":["2023-12-01"," 0.48"]},{"value":["2024-01-01","-0.65"]},{"value":["2024-02-01"," 0.72"]},{"value":["2024-03-01","-0.33"]},{"value":["2024-04-01"," 0.14"]},{"value":["2024-05-01"," 0.44"]},{"value":["2024-06-01","-0.19"]},{"value":["2024-07-01"," 1.82"]}],"name":"5. Transportes","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FFFFBF","stack":"grp"},{"data":[{"value":["2022-08-01","1.31"]},{"value":["2022-09-01","0.57"]},{"value":["2022-10-01","1.16"]},{"value":["2022-11-01","0.02"]},{"value":["2022-12-01","1.60"]},{"value":["2023-01-01","0.16"]},{"value":["2023-02-01","1.26"]},{"value":["2023-03-01","0.82"]},{"value":["2023-04-01","1.49"]},{"value":["2023-05-01","0.93"]},{"value":["2023-06-01","0.11"]},{"value":["2023-07-01","0.26"]},{"value":["2023-08-01","0.58"]},{"value":["2023-09-01","0.04"]},{"value":["2023-10-01","0.32"]},{"value":["2023-11-01","0.08"]},{"value":["2023-12-01","0.35"]},{"value":["2024-01-01","0.83"]},{"value":["2024-02-01","0.65"]},{"value":["2024-03-01","0.43"]},{"value":["2024-04-01","1.16"]},{"value":["2024-05-01","0.69"]},{"value":["2024-06-01","0.54"]},{"value":["2024-07-01","0.22"]}],"name":"6. Saúde e cuidados pessoais","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#E6F598","stack":"grp"},{"data":[{"value":["2022-08-01","0.54"]},{"value":["2022-09-01","0.95"]},{"value":["2022-10-01","0.57"]},{"value":["2022-11-01","0.21"]},{"value":["2022-12-01","0.62"]},{"value":["2023-01-01","0.76"]},{"value":["2023-02-01","0.44"]},{"value":["2023-03-01","0.38"]},{"value":["2023-04-01","0.18"]},{"value":["2023-05-01","0.64"]},{"value":["2023-06-01","0.36"]},{"value":["2023-07-01","0.38"]},{"value":["2023-08-01","0.38"]},{"value":["2023-09-01","0.45"]},{"value":["2023-10-01","0.27"]},{"value":["2023-11-01","0.58"]},{"value":["2023-12-01","0.48"]},{"value":["2024-01-01","0.82"]},{"value":["2024-02-01","0.05"]},{"value":["2024-03-01","0.33"]},{"value":["2024-04-01","0.10"]},{"value":["2024-05-01","0.22"]},{"value":["2024-06-01","0.29"]},{"value":["2024-07-01","0.52"]}],"name":"7. Despesas pessoais","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#ABDDA4","stack":"grp"},{"data":[{"value":["2022-08-01","0.61"]},{"value":["2022-09-01","0.12"]},{"value":["2022-10-01","0.18"]},{"value":["2022-11-01","0.02"]},{"value":["2022-12-01","0.19"]},{"value":["2023-01-01","0.36"]},{"value":["2023-02-01","6.28"]},{"value":["2023-03-01","0.10"]},{"value":["2023-04-01","0.09"]},{"value":["2023-05-01","0.05"]},{"value":["2023-06-01","0.06"]},{"value":["2023-07-01","0.13"]},{"value":["2023-08-01","0.69"]},{"value":["2023-09-01","0.05"]},{"value":["2023-10-01","0.05"]},{"value":["2023-11-01","0.02"]},{"value":["2023-12-01","0.24"]},{"value":["2024-01-01","0.33"]},{"value":["2024-02-01","4.98"]},{"value":["2024-03-01","0.14"]},{"value":["2024-04-01","0.05"]},{"value":["2024-05-01","0.09"]},{"value":["2024-06-01","0.06"]},{"value":["2024-07-01","0.08"]}],"name":"8. Educação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#66C2A5","stack":"grp"},{"data":[{"value":["2022-08-01","-1.10"]},{"value":["2022-09-01","-2.08"]},{"value":["2022-10-01","-0.48"]},{"value":["2022-11-01","-0.14"]},{"value":["2022-12-01"," 0.50"]},{"value":["2023-01-01"," 2.09"]},{"value":["2023-02-01"," 0.98"]},{"value":["2023-03-01"," 0.50"]},{"value":["2023-04-01"," 0.08"]},{"value":["2023-05-01"," 0.21"]},{"value":["2023-06-01","-0.14"]},{"value":["2023-07-01"," 0.00"]},{"value":["2023-08-01","-0.09"]},{"value":["2023-09-01","-0.11"]},{"value":["2023-10-01","-0.19"]},{"value":["2023-11-01","-0.50"]},{"value":["2023-12-01"," 0.04"]},{"value":["2024-01-01","-0.08"]},{"value":["2024-02-01"," 1.56"]},{"value":["2024-03-01","-0.13"]},{"value":["2024-04-01"," 0.48"]},{"value":["2024-05-01"," 0.14"]},{"value":["2024-06-01","-0.08"]},{"value":["2024-07-01"," 0.18"]}],"name":"9. Comunicação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#3288BD","stack":"grp"}],"tooltip":{"trigger":"axis","borderColor":"lightgrey","backgroundColor":"rgba(255,255,255,0.9)"},"title":[{"text":"Impacto dos grupos de produto e serviçoes no IPCA-15"}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -367,6 +348,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -435,13 +443,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -468,12 +478,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -505,7 +518,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -557,10 +592,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -570,8 +622,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -583,9 +644,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -657,9 +954,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false </span></span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Recuperando os dados via SIDRA</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>ipca_15 <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">7062</span>, <span class="co"># Tabela do IPCA-15</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="dv">355</span>, <span class="co"># Variável: IPCA-15 Variação Mensal (%)</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">7060</span>, <span class="co"># Tabela do IPCA --- 7062 tabela IPCA-15</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="dv">63</span>, <span class="co"># Variável: 355 IPCA-15 Variação Mensal (%)</span></span>
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">period =</span> <span class="fu">c</span>(<span class="st">"last"</span> <span class="ot">=</span> <span class="dv">24</span>) <span class="co"># Período últimos 24 meses  </span></span>
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
@@ -669,7 +966,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Tratamento dos dados</span></span>
 <span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Seleção das colunas</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>ipca_15 <span class="ot">&lt;-</span> ipca_15 <span class="sc">|&gt;</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> ipca <span class="sc">|&gt;</span></span>
 <span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">valor =</span> <span class="st">'Valor'</span>,</span>
 <span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>         <span class="at">cod_mes =</span> <span class="st">'Mês (Código)'</span>,</span>
 <span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>         <span class="at">cod_abertura =</span> <span class="st">'Geral, grupo, subgrupo, item e subitem (Código)'</span>,</span>
@@ -678,7 +975,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="do">## Separando a coluna desc_abertura</span></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>ipca_15 <span class="ot">&lt;-</span> ipca_15 <span class="sc">|&gt;</span> </span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> ipca <span class="sc">|&gt;</span> </span>
 <span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_wider_delim</span>(</span>
 <span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> desc_abertura,</span>
 <span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">"."</span>,</span>
@@ -688,7 +985,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando colunas</span></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>ipca_15 <span class="ot">&lt;-</span> ipca_15 <span class="sc">|&gt;</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> ipca <span class="sc">|&gt;</span></span>
 <span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Criando coluna data a partir da coluna cod_mes</span></span>
 <span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="fu">paste0</span>(<span class="st">"01"</span>,</span>
@@ -708,7 +1005,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de evolução do IPCA-15</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>ipca_15 <span class="sc">|&gt;</span> </span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>ipca <span class="sc">|&gt;</span> </span>
 <span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tipo_abertura <span class="sc">==</span> <span class="st">"Geral"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_charts</span>(<span class="at">x =</span> data,</span>
 <span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>                      <span class="at">backgroundColor =</span> <span class="st">"rgb(255,255,255)"</span>) <span class="sc">|&gt;</span> </span>
@@ -729,7 +1026,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>paleta <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>, </span>
 <span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">name =</span> <span class="st">"Spectral"</span>)</span>
 <span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de colunas empilhadas</span></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>ipca_15 <span class="sc">|&gt;</span> </span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>ipca <span class="sc">|&gt;</span> </span>
 <span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tipo_abertura <span class="sc">==</span> <span class="st">"Grupo"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, cod, valor) <span class="sc">|&gt;</span> </span>
 <span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> cod,</span>
@@ -749,9 +1046,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>                       <span class="at">backgroundColor =</span> <span class="st">"rgba(255,255,255,0.9)"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_legend</span>(<span class="at">show =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_title</span>(<span class="st">"Impacto dos grupos de produto e serviçoes no IPCA-15"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_axis_labels</span>(<span class="at">y =</span> <span class="st">"IPCA-15 mensal (%)"</span>)</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_axis_labels</span>(<span class="at">y =</span> <span class="st">"IPCA var. mensal (%)"</span>)</span>
 <span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

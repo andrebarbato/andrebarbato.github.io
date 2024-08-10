@@ -2,7 +2,7 @@
 title: "Acompanhando a inflação com a linguagem R"
 author: "Andre Barbato"
 date: "2024-06-26"
-categories: [Inflação, R, IBGE, SIDRA]
+categories: [Inflação, R, IBGE, SIDRA, BCB]
 image: "capa.jpg"
 toc: true
 toccolor: "blue"
@@ -25,33 +25,41 @@ library(sidrar)
 library(tidyverse)
 library(echarts4r)
 library(RColorBrewer)
+library(GetBCBData)
 ```
 
 ```{r}
 #| warning: false 
 # Recuperando os dados via SIDRA
-ipca_15 <- sidrar::get_sidra(
-  x = 7062, # Tabela do IPCA-15
-  variable = 355, # Variável: IPCA-15 Variação Mensal (%)
+# 63 - IPCA 7060 - Variação mensal
+# 2265 - IPCA 7060 - Variação acumulada em 12 meses
+
+ipca <- sidrar::get_sidra(
+  x = 7060, # Tabela do IPCA ---
+  variable = c(63,2265), # Variável: var. mensal % e acum. 12 meses %  
   period = c("last" = 24) # Período últimos 24 meses  
 )
 
 ```
 
+
+
 ```{r}
 # Tratamento dos dados
 
 ## Seleção das colunas
-ipca_15 <- ipca_15 |>
+ipca <- ipca |>
   rename(valor = 'Valor',
          cod_mes = 'Mês (Código)',
+         var_cod = 'Variável (Código)',
+         var_desc = 'Variável',
          cod_abertura = 'Geral, grupo, subgrupo, item e subitem (Código)',
          desc_abertura = 'Geral, grupo, subgrupo, item e subitem') |> 
-  select(valor, cod_mes, cod_abertura, desc_abertura)
+  select(valor, cod_mes, var_cod, var_desc, cod_abertura, desc_abertura)
 
 
 ## Separando a coluna desc_abertura
-ipca_15 <- ipca_15 |> 
+ipca <- ipca |> 
   tidyr::separate_wider_delim(
     cols = desc_abertura,
     delim = ".",
@@ -61,7 +69,7 @@ ipca_15 <- ipca_15 |>
   )
 
 ## Criando colunas
-ipca_15 <- ipca_15 |>
+ipca <- ipca |>
   mutate(
     # Criando coluna data a partir da coluna cod_mes
     data = lubridate::dmy(paste0("01",
@@ -79,22 +87,65 @@ ipca_15 <- ipca_15 |>
 
 ```
 
+
+```{r}
+#| warning: false 
+# recuperação do sistema de séries do BCB  via GetBCBData:
+# 21379 - difusão IPCA
+# 4466 - (IPCA) - Núcleo médias aparadas com suavização
+# 11427 - (IPCA) - Núcleo por exclusão - EX0
+# 16121 - (IPCA) - Núcleo por exclusão - EX1
+# 16122 - (IPCA) - Núcleo de dupla ponderação
+# 27838 - (IPCA) - Núcleo por exclusão - EX2
+# 27839 - (IPCA) - Núcleo por exclusão - EX3
+# 28750 - (IPCA) - Núcleo Percentil 55
+# 13521 - Meta para a inflação
+
+id_series <- c(dif = 21379,
+               nuc_ex0 = 11427,
+               nuc_ex3 = 27839,
+               ms = 4466,
+               dp = 16122,
+               p55 = 28750,
+               meta = 13521)
+
+# menor data no data frame IPCA
+first_date <- min(ipca$data)
+
+bcb_series <- GetBCBData::gbcbd_get_series(
+  id = id_series,
+  first.date = first_date,
+  last.date = Sys.Date(),
+  use.memoise = FALSE
+)
+```
+
+
 ```{r}
 # Gráfico de evolução do IPCA-15
-ipca_15 |> 
-  filter(tipo_abertura == "Geral") |> 
+ipca |> 
+  filter(tipo_abertura == "Geral") |>
+  pivot_wider(
+    names_from = var_cod,
+    values_from = valor
+  ) |>
+  select(data, '63', '2265') |>
+  group_by(data) 
   echarts4r::e_charts(x = data,
                       backgroundColor = "rgb(255,255,255)") |> 
-  echarts4r::e_line(serie = valor,
-                    name = "IPCA-15",
+  echarts4r::e_line(serie = 2265,
+                    name = "Var. acum. (%) 12M",
                     color = "darkblue",
-                    smooth = FALSE) |> 
+                    smooth = FALSE) |>
+  echarts4r::e_bar(serie = 63,
+                   name = "Var. mensal (%)",
+                   color = "grey") |>
   echarts4r::e_tooltip(trigger = "axis",
-                       borderColor = "darkblue",
+                       borderColor = "lighgrey",
                        backgroundColor = "rgba(255,255,255,0.9)") |> 
-  echarts4r::e_title("Evolução do IPCA-15") |> 
+  echarts4r::e_title("Evolução do IPCA") |> 
   echarts4r::e_legend(show = FALSE) |> 
-  echarts4r::e_axis_labels(y = "IPCA-15 mensal (%)")
+  echarts4r::e_axis_labels(y = "IPCA var. mensal (%)")
 ```
 
 ```{r}
@@ -102,7 +153,7 @@ ipca_15 |>
 paleta <- RColorBrewer::brewer.pal(9, 
                                    name = "Spectral")
 # Gráfico de colunas empilhadas
-ipca_15 |> 
+ipca |> 
   filter(tipo_abertura == "Grupo") |>
   select(data, cod, valor) |> 
   pivot_wider(names_from = cod,
@@ -121,6 +172,9 @@ ipca_15 |>
                        borderColor = "lightgrey",
                        backgroundColor = "rgba(255,255,255,0.9)") |>
   echarts4r::e_legend(show = FALSE) |> 
-  echarts4r::e_title("Impacto dos grupos de produto e serviçoes no IPCA-15") |> 
-  echarts4r::e_axis_labels(y = "IPCA-15 mensal (%)")
+  echarts4r::e_title("Impacto dos grupos de produto e serviçoes no IPCA") |> 
+  echarts4r::e_axis_labels(y = "IPCA var. mensal (%)")
 ```
+
+
+
