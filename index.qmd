@@ -13,5 +13,3 @@ about:
 ---
 
 Especialista em MBA Data Science e Analytics pela USP-ESALQ e bacharel em Ciências Econômicas pela PUC-SP. Atua há 10+ anos em finanças corporativas em empresas multinacionais de grande porte nos setores de Telecom e TI, principalmente nas áreas FP&A e Controladoria, sendo responsável pelos processos de Orçamento, Rolling Forecast, Monthly Closing.
-
-
