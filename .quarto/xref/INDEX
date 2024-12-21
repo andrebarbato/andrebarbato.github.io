@@ -28,5 +28,11 @@
   },
   "blog/IPCA_15/index.qmd": {
     "index.html": "b4cfbcbd"
+  },
+  "indexold.qmd": {
+    "indexold.html": "2faacbd2"
+  },
+  "projetos.qmd": {
+    "projetos.html": "47045527"
   }
 }

@@ -12,5 +12,19 @@
       "/blog/IPCA_15/index.html",
       "/blog/fundamentos_estatistica/index.html"
     ]
+  },
+  {
+    "listing": "/indexold.html",
+    "items": [
+      "/posts/post-with-code/index.html",
+      "/posts/welcome/index.html"
+    ]
+  },
+  {
+    "listing": "/projetos.html",
+    "items": [
+      "/posts/post-with-code/index.html",
+      "/posts/welcome/index.html"
+    ]
   }
 ]

@@ -1,9 +1,9 @@
 /* css styles */
 .card{
-    border: 0px solid #ddd;
+    border: 1px solid #ddd;
     display: grid;
     /*padding: 20px;*/
-    border-radius: 8px;
+    border-radius: 4px;
     text-align: left;
     cursor: pointer;
     width: 100%;

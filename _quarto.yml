@@ -5,10 +5,14 @@ website:
   title: "Andre Barbato"
   favicon: "images/favicon.png"
   navbar:
-    logo: "images/favicon.png"
+    left: 
+      - text: "Home"
+        file: index.qmd
+      - text: "Projetos"
+        file: projetos.qmd
+      - text: "Blog"
+        file: blog.qmd
     right:
-      - blog.qmd
-      - about.qmd
       - icon: github
         href: https://github.com/andrebarbato
       - icon: linkedin
@@ -17,11 +21,11 @@ website:
 format:
   html:
     theme:
-      light: [darkly,theme_dark_custom.scss]
-      dark: darkly
+      light: flatly
+      dark: [flatly,theme_dark_custom.scss]
     css: styles.css
     code-link: true
-    code-tools: true
+    code-tools: false
     code-fold: show
     highlight-style: github
 

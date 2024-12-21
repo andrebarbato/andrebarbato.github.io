@@ -1,12 +1,17 @@
 ---
-title: "Home"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: grid
-  categories: true
-  sort-ui: true
-  filter-ui: false
-page-layout: full
-title-block-banner: false
+title: "Andre Barbato"
+image: images\profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/andrebarbato/
+    - icon: github
+      text: Github
+      href: https://github.com/andrebarbato
 ---
+
+Especialista em MBA Data Science e Analytics pela USP-ESALQ e bacharel em Ciências Econômicas pela PUC-SP. Atua há 10+ anos em finanças corporativas em empresas multinacionais de grande porte nos setores de Telecom e TI, principalmente nas áreas FP&A e Controladoria, sendo responsável pelos processos de Orçamento, Rolling Forecast, Monthly Closing.
+
+
