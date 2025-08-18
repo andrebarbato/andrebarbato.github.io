@@ -2,7 +2,7 @@
 title: "Andre Barbato"
 image: images\profile.jpg
 about:
-  template: jolla
+  template: trestles
   links:
     - icon: linkedin
       text: LinkedIn
