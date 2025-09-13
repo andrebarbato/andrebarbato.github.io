@@ -134,9 +134,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
-  <ul class="collapse">
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
   <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados">Dados</a></li>
+  <li><a href="#etapas-do-projeto" id="toc-etapas-do-projeto" class="nav-link" data-scroll-target="#etapas-do-projeto">Etapas do projeto</a>
+  <ul class="collapse">
   <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
   <li><a href="#análise-exploratória" id="toc-análise-exploratória" class="nav-link" data-scroll-target="#análise-exploratória">Análise Exploratória</a></li>
   <li><a href="#modelos" id="toc-modelos" class="nav-link" data-scroll-target="#modelos">Modelos</a>
@@ -192,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Previsão de vendas no varejo usando modelos estatísticos e de Machine Learning</p>
+<p>Previsão de vendas no varejo usando modelos estatísticos e de machine learning</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/clipboard-3560889895.jpeg" class="img-fluid figure-img"></p>
@@ -216,11 +217,36 @@ Informação
 <p>Esse projeto foi apresentado como trabalho de conclusão de curso (TCC) no MBA Data Science e Analytics como critério para conclusão da pós-graduação lato-sensu.</p>
 </div>
 </div>
-<section id="dados" class="level2">
-<h2 class="anchored" data-anchor-id="dados">Dados</h2>
-<p>Os dados utilizados nesse projeto são disponibilizados na plataforma <a href="https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/overview">Kaggle</a> e referem-se o histórico de vendas da rede de lojas do <strong>Walmart</strong>. Coletados entre 05/02/2010 e 26/10/2012, referem-se a 45 lojas divididas em 81 departamentos.</p>
-<p>As informações foram disponibilizadas em três arquivos com extensão CSV. O arquivo ‘stores.cvs’ contém informações sobre as lojas, separadas em categorias de acordo com seu tamanho. O arquivo ‘train.csv’ contém dados históricos de vendas semanais por loja e departamento. Por fim, o arquivo ‘features.csv’ contém dados relativos às lojas, departamentos, dados regionais meteorológicos, índices macroeconômicos e de calendário.</p>
 </section>
+<section id="dados" class="level1">
+<h1>Dados</h1>
+<p>Os dados utilizados nesse projeto são disponibilizados na plataforma <a href="https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/overview">Kaggle</a> e referem-se ao histórico de vendas da rede de lojas do <strong>Walmart</strong>. Coletados entre 05/02/2010 e 26/10/2012, referem-se a 45 lojas divididas em 81 departamentos.</p>
+<p>As informações foram disponibilizadas em arquivos com extensão CSV conforme abaixo:</p>
+<ol type="1">
+<li><strong>stores.csv</strong></li>
+</ol>
+<p>Este arquivo contém informações anonimizadas de 45 lojas, indicando o tipo e tamanho da loja.</p>
+<ol start="2" type="1">
+<li><strong>train.csv</strong></li>
+</ol>
+<p>Este arquivo contém o histórico de vendas para treinamento dos modelos que vão de 05/02/2010 a 01/11/2012, contendo os seguintes campos:</p>
+<ul>
+<li>Store: o ID da loja</li>
+<li>Dept: o ID do departamento</li>
+<li>Date: data referente a semana (sempre a sexta-feira)</li>
+<li>Weekly_Sales: Valor de vendas para um determinado departamento e uma determinada loja.</li>
+<li>IsHoliday - se a semana é uma semana em que houve algum feriado especial (Super Bowl, Labor Day, Thanksgiving, and Christmas)</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>test.csv</strong></li>
+</ol>
+<p>Este arquivo é igual ao arquivo de treino com excessão de que foram deixados algumas semanas para as quais será feita a previsão do valor de vendas.</p>
+<ol start="3" type="1">
+<li><strong>features.csv</strong></li>
+</ol>
+</section>
+<section id="etapas-do-projeto" class="level1">
+<h1>Etapas do projeto</h1>
 <section id="data-wrangling" class="level2">
 <h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h2>
 </section>

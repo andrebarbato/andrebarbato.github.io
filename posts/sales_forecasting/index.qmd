@@ -23,11 +23,34 @@ Neste sentido, o objetivo deste projeto é demonstrar a aplicação de algoritmo
 Esse projeto foi apresentado como trabalho de conclusão de curso (TCC) no MBA Data Science e Analytics como critério para conclusão da pós-graduação lato-sensu.
 :::
 
-## Dados
+# Dados
 
-Os dados utilizados nesse projeto são disponibilizados na plataforma [Kaggle](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/overview) e referem-se o histórico de vendas da rede de lojas do **Walmart**. Coletados entre 05/02/2010 e 26/10/2012, referem-se a 45 lojas divididas em 81 departamentos.
+Os dados utilizados nesse projeto são disponibilizados na plataforma [Kaggle](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/overview) e referem-se ao histórico de vendas da rede de lojas do **Walmart**. Coletados entre 05/02/2010 e 26/10/2012, referem-se a 45 lojas divididas em 81 departamentos.
 
-As informações foram disponibilizadas em três arquivos com extensão CSV. O arquivo ‘stores.cvs’ contém informações sobre as lojas, separadas em categorias de acordo com seu tamanho. O arquivo ‘train.csv’ contém dados históricos de vendas semanais por loja e departamento. Por fim, o arquivo ‘features.csv’ contém dados relativos às lojas, departamentos, dados regionais meteorológicos, índices macroeconômicos e de calendário.
+As informações foram disponibilizadas em arquivos com extensão CSV conforme abaixo: 
+
+1. **stores.csv**
+
+Este arquivo contém informações anonimizadas de 45 lojas, indicando o tipo e tamanho da loja.
+
+2. **train.csv**
+
+Este arquivo contém o histórico de vendas para treinamento dos modelos que vão de 05/02/2010 a 01/11/2012, contendo os seguintes campos:
+
+- Store: o ID da loja
+- Dept: o ID do departamento
+- Date: data referente a semana (sempre a sexta-feira)
+- Weekly_Sales: Valor de vendas para um determinado departamento e uma determinada loja.
+- IsHoliday - se a semana é uma semana em que houve algum feriado especial (Super Bowl, Labor Day, Thanksgiving, and Christmas)
+
+2. **test.csv**
+
+Este arquivo é igual ao arquivo de treino com excessão de que foram deixados algumas semanas para as quais será feita a previsão do valor de vendas. 
+
+3. **features.csv**
+
+
+# Etapas do projeto
 
 ## Data Wrangling
 
