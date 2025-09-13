@@ -1,0 +1,50 @@
+---
+title: "Previsão de vendas para o varejo"
+author: "Andre Barbato"
+title-block-banner: false
+date: "2024-01-15"
+categories: [sales, forecasting, time_series]
+toc: true
+---
+
+Previsão de vendas no varejo usando modelos estatísticos e de machine learning
+
+![Fonte: Unsplash \| Autor: \_gemmajade](images/clipboard-3560889895.jpeg)
+
+# Introdução
+
+A previsão de vendas em uma loja de varejo é crucial para o sucesso do negócio, pois permite que os gestores planejem de forma eficaz o estoque, a alocação de recursos e as estratégias de marketing. Com uma previsão precisa, é possível evitar excessos ou faltas de produtos, o que pode impactar diretamente a satisfação do cliente e a rentabilidade. Além disso, a previsão de vendas ajuda a identificar tendências de mercado e comportamentos dos consumidores, possibilitando ajustes nas ofertas e promoções. Em um ambiente competitivo, a capacidade de antecipar a demanda não só otimiza operações, mas também contribui para a tomada de decisões estratégicas que podem diferenciar a loja no mercado.
+
+Neste sentido, o objetivo deste projeto é demonstrar a aplicação de algoritmos de machine learning, como Random Forest, xGBOOST e Redes Neurais no contexto de previsão de vendas de uma empresa de varejo. E comparar a performance desses algoritmos com a performance de técnicas mais tradicionais como os modelos auto-regressivos integrados de médias móveis (ARIMA)
+
+::: callout-note
+## Informação
+
+Esse projeto foi apresentado como trabalho de conclusão de curso (TCC) no MBA Data Science e Analytics como critério para conclusão da pós-graduação lato-sensu.
+:::
+
+## Dados
+
+Os dados utilizados nesse projeto são disponibilizados na plataforma [Kaggle](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/overview) e referem-se o histórico de vendas da rede de lojas do **Walmart**. Coletados entre 05/02/2010 e 26/10/2012, referem-se a 45 lojas divididas em 81 departamentos.
+
+As informações foram disponibilizadas em três arquivos com extensão CSV. O arquivo ‘stores.cvs’ contém informações sobre as lojas, separadas em categorias de acordo com seu tamanho. O arquivo ‘train.csv’ contém dados históricos de vendas semanais por loja e departamento. Por fim, o arquivo ‘features.csv’ contém dados relativos às lojas, departamentos, dados regionais meteorológicos, índices macroeconômicos e de calendário.
+
+## Data Wrangling
+
+## Análise Exploratória
+
+## Modelos
+
+### Modelos SARIMA
+
+### Random Forest
+
+### XGBoost
+
+### Neural Network
+
+## Resultados
+
+# Conclusão
+
+# Referências

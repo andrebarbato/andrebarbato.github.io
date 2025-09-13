@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.55">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Andre Barbato">
 <meta name="dcterms.date" content="2024-06-26">
+
 <title>Acompanhando a inflação com a linguagem R – Andre Barbato</title>
 <style>
 code{white-space: pre-wrap;}
@@ -55,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -73,7 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -99,13 +104,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="../../site_libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="../../site_libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="../../site_libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="../../site_libs/echarts4r-binding-0.4.5/echarts4r.js"></script><link rel="stylesheet" href="../../styles.css">
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../../site_libs/echarts4r-4.8.0/echarts-en.min.js"></script>
+
+<script src="../../site_libs/echarts4r-4.8.0/ecStat.min.js"></script>
+
+<script src="../../site_libs/echarts4r-4.8.0/dataTool.min.js"></script>
+
+<script src="../../site_libs/echarts4r-binding-0.4.5/echarts4r.js"></script>
+
+
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Andre Barbato</span>
@@ -117,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -130,8 +152,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/andrebarbato"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
@@ -142,23 +164,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Nesta página</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-<li><a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o">Introdução</a></li>
-  </ul></nav>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Acompanhando a inflação com a linguagem R</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Inflação</div>
@@ -191,125 +221,146 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>IPCA-15 sobe 0,39% em Junho e fica em 4,06% no acumulado dos últimos 12 meses</p>
+</header>
+
+
+<p>IPCA-15 sobe 0,39% em Junho e fica em 4,06% no acumulado dos últimos 12 meses</p>
 <div class="quarto-figure quarto-figure-left">
-<figure class="figure"><p><img src="capa.jpg" alt="Uso gratuito sob a Licença da Unsplash" width="642" height="427" class="figure-img"></p>
-<figcaption>Fonte: Unsplash</figcaption></figure>
+<figure class="figure">
+<p><img src="capa.jpg" alt="Uso gratuito sob a Licença da Unsplash" width="642" height="427" class="figure-img"></p>
+<figcaption>Fonte: Unsplash</figcaption>
+</figure>
 </div>
-<section id="introdução" class="level1"><h1>Introdução</h1>
+<section id="introdução" class="level1">
+<h1>Introdução</h1>
 <p>O início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Carregar pacotes</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rpradosiqueira/sidrar/">sidrar</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/">echarts4r</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar pacotes</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sidrar)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(echarts4r)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recuperando os dados via SIDRA</span></span>
-<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="fu">sidrar</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sidrar/man/get_sidra.html">get_sidra</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="fl">7060</span>, <span class="co"># Tabela do IPCA --- 7062 tabela IPCA-15</span></span>
-<span>  variable <span class="op">=</span> <span class="fl">63</span>, <span class="co"># Variável: 355 IPCA-15 Variação Mensal (%)</span></span>
-<span>  period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"last"</span> <span class="op">=</span> <span class="fl">24</span><span class="op">)</span> <span class="co"># Período últimos 24 meses  </span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recuperando os dados via SIDRA</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">7060</span>, <span class="co"># Tabela do IPCA --- 7062 tabela IPCA-15</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="dv">63</span>, <span class="co"># Variável: 355 IPCA-15 Variação Mensal (%)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">period =</span> <span class="fu">c</span>(<span class="st">"last"</span> <span class="ot">=</span> <span class="dv">24</span>) <span class="co"># Período últimos 24 meses  </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Tratamento dos dados</span></span>
-<span></span>
-<span><span class="co">## Seleção das colunas</span></span>
-<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="va">ipca</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>valor <span class="op">=</span> <span class="st">'Valor'</span>,</span>
-<span>         cod_mes <span class="op">=</span> <span class="st">'Mês (Código)'</span>,</span>
-<span>         cod_abertura <span class="op">=</span> <span class="st">'Geral, grupo, subgrupo, item e subitem (Código)'</span>,</span>
-<span>         desc_abertura <span class="op">=</span> <span class="st">'Geral, grupo, subgrupo, item e subitem'</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">valor</span>, <span class="va">cod_mes</span>, <span class="va">cod_abertura</span>, <span class="va">desc_abertura</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co">## Separando a coluna desc_abertura</span></span>
-<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="va">ipca</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span></span>
-<span>    cols <span class="op">=</span> <span class="va">desc_abertura</span>,</span>
-<span>    delim <span class="op">=</span> <span class="st">"."</span>,</span>
-<span>    names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cod"</span>, <span class="st">"desc"</span><span class="op">)</span>,</span>
-<span>    too_few <span class="op">=</span> <span class="st">"align_end"</span>,</span>
-<span>    cols_remove <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Criando colunas</span></span>
-<span><span class="va">ipca</span> <span class="op">&lt;-</span> <span class="va">ipca</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    <span class="co"># Criando coluna data a partir da coluna cod_mes</span></span>
-<span>    data <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"01"</span>,</span>
-<span>                                 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">cod_mes</span>, start <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span>                                 <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">cod_mes</span>, end <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    <span class="co"># Criando tipo para os níveis de abertura</span></span>
-<span>    tipo_abertura <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">cod</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Grupo"</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">cod</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"Subgrupo"</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">cod</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">"Item"</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">cod</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">"Subitem"</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">cod</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Geral"</span></span>
-<span>    <span class="op">)</span></span>
-<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tratamento dos dados</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Seleção das colunas</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> ipca <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">valor =</span> <span class="st">'Valor'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">cod_mes =</span> <span class="st">'Mês (Código)'</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">cod_abertura =</span> <span class="st">'Geral, grupo, subgrupo, item e subitem (Código)'</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">desc_abertura =</span> <span class="st">'Geral, grupo, subgrupo, item e subitem'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(valor, cod_mes, cod_abertura, desc_abertura)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Separando a coluna desc_abertura</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> ipca <span class="sc">|&gt;</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_wider_delim</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> desc_abertura,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">"."</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"cod"</span>, <span class="st">"desc"</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">too_few =</span> <span class="st">"align_end"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols_remove =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando colunas</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> ipca <span class="sc">|&gt;</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Criando coluna data a partir da coluna cod_mes</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="fu">paste0</span>(<span class="st">"01"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                                 stringr<span class="sc">::</span><span class="fu">str_sub</span>(cod_mes, <span class="at">start =</span> <span class="sc">-</span><span class="dv">2</span>),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                                 stringr<span class="sc">::</span><span class="fu">str_sub</span>(cod_mes, <span class="at">end =</span> <span class="dv">4</span>))),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Criando tipo para os níveis de abertura</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">tipo_abertura =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nchar</span>(cod) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Grupo"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nchar</span>(cod) <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Subgrupo"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nchar</span>(cod) <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Item"</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nchar</span>(cod) <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Subitem"</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(cod) <span class="sc">~</span> <span class="st">"Geral"</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Gráfico de evolução do IPCA-15</span></span>
-<span><span class="va">ipca</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tipo_abertura</span> <span class="op">==</span> <span class="st">"Geral"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">data</span>,</span>
-<span>                      backgroundColor <span class="op">=</span> <span class="st">"rgb(255,255,255)"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_line.html">e_line</a></span><span class="op">(</span>serie <span class="op">=</span> <span class="va">valor</span>,</span>
-<span>                    name <span class="op">=</span> <span class="st">"IPCA-15"</span>,</span>
-<span>                    color <span class="op">=</span> <span class="st">"darkblue"</span>,</span>
-<span>                    smooth <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span>,</span>
-<span>                       borderColor <span class="op">=</span> <span class="st">"darkblue"</span>,</span>
-<span>                       backgroundColor <span class="op">=</span> <span class="st">"rgba(255,255,255,0.9)"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_title.html">e_title</a></span><span class="op">(</span><span class="st">"Evolução do IPCA-15"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_legend.html">e_legend</a></span><span class="op">(</span>show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_axis_labels.html">e_axis_labels</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"IPCA-15 mensal (%)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de evolução do IPCA-15</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ipca <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tipo_abertura <span class="sc">==</span> <span class="st">"Geral"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_charts</span>(<span class="at">x =</span> data,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">backgroundColor =</span> <span class="st">"rgb(255,255,255)"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_line</span>(<span class="at">serie =</span> valor,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">"IPCA-15"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">"darkblue"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">smooth =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">borderColor =</span> <span class="st">"darkblue"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">backgroundColor =</span> <span class="st">"rgba(255,255,255,0.9)"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_title</span>(<span class="st">"Evolução do IPCA-15"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_legend</span>(<span class="at">show =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_axis_labels</span>(<span class="at">y =</span> <span class="st">"IPCA-15 mensal (%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div class="echarts4r html-widget html-fill-item" id="htmlwidget-e308522c972f0aed70d2" style="width:100%;height:500px;"></div>
 <script type="application/json" data-for="htmlwidget-e308522c972f0aed70d2">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"backgroundColor":"rgb(255,255,255)","yAxis":[{"show":true,"name":"IPCA-15 mensal (%)"}],"xAxis":[{"data":["2022-08-01","2022-09-01","2022-10-01","2022-11-01","2022-12-01","2023-01-01","2023-02-01","2023-03-01","2023-04-01","2023-05-01","2023-06-01","2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01","2024-07-01"],"type":"time","boundaryGap":true,"name":""}],"legend":{"data":["IPCA-15"],"show":false,"type":"plain"},"series":[{"data":[{"value":["2022-08-01","-0.36"]},{"value":["2022-09-01","-0.29"]},{"value":["2022-10-01"," 0.59"]},{"value":["2022-11-01"," 0.41"]},{"value":["2022-12-01"," 0.62"]},{"value":["2023-01-01"," 0.53"]},{"value":["2023-02-01"," 0.84"]},{"value":["2023-03-01"," 0.71"]},{"value":["2023-04-01"," 0.61"]},{"value":["2023-05-01"," 0.23"]},{"value":["2023-06-01","-0.08"]},{"value":["2023-07-01"," 0.12"]},{"value":["2023-08-01"," 0.23"]},{"value":["2023-09-01"," 0.26"]},{"value":["2023-10-01"," 0.24"]},{"value":["2023-11-01"," 0.28"]},{"value":["2023-12-01"," 0.56"]},{"value":["2024-01-01"," 0.42"]},{"value":["2024-02-01"," 0.83"]},{"value":["2024-03-01"," 0.16"]},{"value":["2024-04-01"," 0.38"]},{"value":["2024-05-01"," 0.46"]},{"value":["2024-06-01"," 0.21"]},{"value":["2024-07-01"," 0.38"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"IPCA-15","type":"line","coordinateSystem":"cartesian2d","color":"darkblue","smooth":false}],"tooltip":{"trigger":"axis","borderColor":"darkblue","backgroundColor":"rgba(255,255,255,0.9)"},"title":[{"text":"Evolução do IPCA-15"}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Criando a paleta de cores</span></span>
-<span><span class="va">paleta</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, </span>
-<span>                                   name <span class="op">=</span> <span class="st">"Spectral"</span><span class="op">)</span></span>
-<span><span class="co"># Gráfico de colunas empilhadas</span></span>
-<span><span class="va">ipca</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tipo_abertura</span> <span class="op">==</span> <span class="st">"Grupo"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">cod</span>, <span class="va">valor</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">cod</span>,</span>
-<span>              values_from <span class="op">=</span> <span class="va">valor</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">data</span>, backgroundColor <span class="op">=</span> <span class="st">"rgb(255,255,255)"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">1</span>, name <span class="op">=</span> <span class="st">"1. Alimentação e bebidas"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">2</span>, name <span class="op">=</span> <span class="st">"2. Habitação"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">3</span>, name <span class="op">=</span> <span class="st">"3. Artigos de residência"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">4</span>, name <span class="op">=</span> <span class="st">"4. Vestuário"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">5</span>, name <span class="op">=</span> <span class="st">"5. Transportes"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">6</span>, name <span class="op">=</span> <span class="st">"6. Saúde e cuidados pessoais"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">7</span>, name <span class="op">=</span> <span class="st">"7. Despesas pessoais"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">8</span>, name <span class="op">=</span> <span class="st">"8. Educação"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="fl">9</span>, name <span class="op">=</span> <span class="st">"9. Comunicação"</span>, color <span class="op">=</span> <span class="va">paleta</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span>, stack <span class="op">=</span> <span class="st">"grp"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span>,</span>
-<span>                       borderColor <span class="op">=</span> <span class="st">"lightgrey"</span>,</span>
-<span>                       backgroundColor <span class="op">=</span> <span class="st">"rgba(255,255,255,0.9)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_legend.html">e_legend</a></span><span class="op">(</span>show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_title.html">e_title</a></span><span class="op">(</span><span class="st">"Impacto dos grupos de produto e serviçoes no IPCA-15"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">echarts4r</span><span class="fu">::</span><span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_axis_labels.html">e_axis_labels</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"IPCA var. mensal (%)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando a paleta de cores</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>paleta <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">name =</span> <span class="st">"Spectral"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de colunas empilhadas</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ipca <span class="sc">|&gt;</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tipo_abertura <span class="sc">==</span> <span class="st">"Grupo"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data, cod, valor) <span class="sc">|&gt;</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> cod,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> valor) <span class="sc">|&gt;</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_charts</span>(data, <span class="at">backgroundColor =</span> <span class="st">"rgb(255,255,255)"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">1</span>, <span class="at">name =</span> <span class="st">"1. Alimentação e bebidas"</span>, <span class="at">color =</span> paleta[<span class="dv">1</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">2</span>, <span class="at">name =</span> <span class="st">"2. Habitação"</span>, <span class="at">color =</span> paleta[<span class="dv">2</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">3</span>, <span class="at">name =</span> <span class="st">"3. Artigos de residência"</span>, <span class="at">color =</span> paleta[<span class="dv">3</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">4</span>, <span class="at">name =</span> <span class="st">"4. Vestuário"</span>, <span class="at">color =</span> paleta[<span class="dv">4</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">5</span>, <span class="at">name =</span> <span class="st">"5. Transportes"</span>, <span class="at">color =</span> paleta[<span class="dv">5</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">6</span>, <span class="at">name =</span> <span class="st">"6. Saúde e cuidados pessoais"</span>, <span class="at">color =</span> paleta[<span class="dv">6</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">7</span>, <span class="at">name =</span> <span class="st">"7. Despesas pessoais"</span>, <span class="at">color =</span> paleta[<span class="dv">7</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">8</span>, <span class="at">name =</span> <span class="st">"8. Educação"</span>, <span class="at">color =</span> paleta[<span class="dv">8</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_bar</span>(<span class="dv">9</span>, <span class="at">name =</span> <span class="st">"9. Comunicação"</span>, <span class="at">color =</span> paleta[<span class="dv">9</span>], <span class="at">stack =</span> <span class="st">"grp"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_tooltip</span>(<span class="at">trigger =</span> <span class="st">"axis"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">borderColor =</span> <span class="st">"lightgrey"</span>,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">backgroundColor =</span> <span class="st">"rgba(255,255,255,0.9)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_legend</span>(<span class="at">show =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_title</span>(<span class="st">"Impacto dos grupos de produto e serviçoes no IPCA-15"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  echarts4r<span class="sc">::</span><span class="fu">e_axis_labels</span>(<span class="at">y =</span> <span class="st">"IPCA var. mensal (%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div class="echarts4r html-widget html-fill-item" id="htmlwidget-a70403f575f497239f70" style="width:100%;height:500px;"></div>
 <script type="application/json" data-for="htmlwidget-a70403f575f497239f70">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"backgroundColor":"rgb(255,255,255)","yAxis":[{"show":true,"name":"IPCA var. mensal (%)"}],"xAxis":[{"data":["2022-08-01","2022-09-01","2022-10-01","2022-11-01","2022-12-01","2023-01-01","2023-02-01","2023-03-01","2023-04-01","2023-05-01","2023-06-01","2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01","2024-07-01"],"type":"time","boundaryGap":true,"name":""}],"legend":{"data":["1. Alimentação e bebidas","2. Habitação","3. Artigos de residência","4. Vestuário","5. Transportes","6. Saúde e cuidados pessoais","7. Despesas pessoais","8. Educação","9. Comunicação"],"show":false,"type":"plain"},"series":[{"data":[{"value":["2022-08-01"," 0.24"]},{"value":["2022-09-01","-0.51"]},{"value":["2022-10-01"," 0.72"]},{"value":["2022-11-01"," 0.53"]},{"value":["2022-12-01"," 0.66"]},{"value":["2023-01-01"," 0.59"]},{"value":["2023-02-01"," 0.16"]},{"value":["2023-03-01"," 0.05"]},{"value":["2023-04-01"," 0.71"]},{"value":["2023-05-01"," 0.16"]},{"value":["2023-06-01","-0.66"]},{"value":["2023-07-01","-0.46"]},{"value":["2023-08-01","-0.85"]},{"value":["2023-09-01","-0.71"]},{"value":["2023-10-01"," 0.31"]},{"value":["2023-11-01"," 0.63"]},{"value":["2023-12-01"," 1.11"]},{"value":["2024-01-01"," 1.38"]},{"value":["2024-02-01"," 0.95"]},{"value":["2024-03-01"," 0.53"]},{"value":["2024-04-01"," 0.70"]},{"value":["2024-05-01"," 0.62"]},{"value":["2024-06-01"," 0.44"]},{"value":["2024-07-01","-1.00"]}],"name":"1. Alimentação e bebidas","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#D53E4F","stack":"grp"},{"data":[{"value":["2022-08-01"," 0.10"]},{"value":["2022-09-01"," 0.60"]},{"value":["2022-10-01"," 0.34"]},{"value":["2022-11-01"," 0.51"]},{"value":["2022-12-01"," 0.20"]},{"value":["2023-01-01"," 0.33"]},{"value":["2023-02-01"," 0.82"]},{"value":["2023-03-01"," 0.57"]},{"value":["2023-04-01"," 0.48"]},{"value":["2023-05-01"," 0.67"]},{"value":["2023-06-01"," 0.69"]},{"value":["2023-07-01","-1.01"]},{"value":["2023-08-01"," 1.11"]},{"value":["2023-09-01"," 0.47"]},{"value":["2023-10-01"," 0.02"]},{"value":["2023-11-01"," 0.48"]},{"value":["2023-12-01"," 0.34"]},{"value":["2024-01-01"," 0.25"]},{"value":["2024-02-01"," 0.27"]},{"value":["2024-03-01"," 0.19"]},{"value":["2024-04-01","-0.01"]},{"value":["2024-05-01"," 0.67"]},{"value":["2024-06-01"," 0.25"]},{"value":["2024-07-01"," 0.77"]}],"name":"2. Habitação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#F46D43","stack":"grp"},{"data":[{"value":["2022-08-01"," 0.42"]},{"value":["2022-09-01","-0.13"]},{"value":["2022-10-01"," 0.39"]},{"value":["2022-11-01","-0.68"]},{"value":["2022-12-01"," 0.64"]},{"value":["2023-01-01"," 0.70"]},{"value":["2023-02-01"," 0.11"]},{"value":["2023-03-01","-0.27"]},{"value":["2023-04-01"," 0.17"]},{"value":["2023-05-01","-0.23"]},{"value":["2023-06-01","-0.42"]},{"value":["2023-07-01"," 0.04"]},{"value":["2023-08-01","-0.04"]},{"value":["2023-09-01","-0.58"]},{"value":["2023-10-01"," 0.46"]},{"value":["2023-11-01","-0.42"]},{"value":["2023-12-01"," 0.76"]},{"value":["2024-01-01"," 0.22"]},{"value":["2024-02-01","-0.07"]},{"value":["2024-03-01","-0.04"]},{"value":["2024-04-01","-0.26"]},{"value":["2024-05-01","-0.53"]},{"value":["2024-06-01"," 0.19"]},{"value":["2024-07-01"," 0.48"]}],"name":"3. Artigos de residência","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FDAE61","stack":"grp"},{"data":[{"value":["2022-08-01"," 1.69"]},{"value":["2022-09-01"," 1.77"]},{"value":["2022-10-01"," 1.22"]},{"value":["2022-11-01"," 1.10"]},{"value":["2022-12-01"," 1.52"]},{"value":["2023-01-01","-0.27"]},{"value":["2023-02-01","-0.24"]},{"value":["2023-03-01"," 0.31"]},{"value":["2023-04-01"," 0.79"]},{"value":["2023-05-01"," 0.47"]},{"value":["2023-06-01"," 0.35"]},{"value":["2023-07-01","-0.24"]},{"value":["2023-08-01"," 0.54"]},{"value":["2023-09-01"," 0.38"]},{"value":["2023-10-01"," 0.45"]},{"value":["2023-11-01","-0.35"]},{"value":["2023-12-01"," 0.70"]},{"value":["2024-01-01"," 0.14"]},{"value":["2024-02-01","-0.44"]},{"value":["2024-03-01"," 0.03"]},{"value":["2024-04-01"," 0.55"]},{"value":["2024-05-01"," 0.50"]},{"value":["2024-06-01"," 0.02"]},{"value":["2024-07-01","-0.02"]}],"name":"4. Vestuário","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FEE08B","stack":"grp"},{"data":[{"value":["2022-08-01","-3.37"]},{"value":["2022-09-01","-1.98"]},{"value":["2022-10-01"," 0.58"]},{"value":["2022-11-01"," 0.83"]},{"value":["2022-12-01"," 0.21"]},{"value":["2023-01-01"," 0.55"]},{"value":["2023-02-01"," 0.37"]},{"value":["2023-03-01"," 2.11"]},{"value":["2023-04-01"," 0.56"]},{"value":["2023-05-01","-0.57"]},{"value":["2023-06-01","-0.41"]},{"value":["2023-07-01"," 1.50"]},{"value":["2023-08-01"," 0.34"]},{"value":["2023-09-01"," 1.40"]},{"value":["2023-10-01"," 0.35"]},{"value":["2023-11-01"," 0.27"]},{"value":["2023-12-01"," 0.48"]},{"value":["2024-01-01","-0.65"]},{"value":["2024-02-01"," 0.72"]},{"value":["2024-03-01","-0.33"]},{"value":["2024-04-01"," 0.14"]},{"value":["2024-05-01"," 0.44"]},{"value":["2024-06-01","-0.19"]},{"value":["2024-07-01"," 1.82"]}],"name":"5. Transportes","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#FFFFBF","stack":"grp"},{"data":[{"value":["2022-08-01","1.31"]},{"value":["2022-09-01","0.57"]},{"value":["2022-10-01","1.16"]},{"value":["2022-11-01","0.02"]},{"value":["2022-12-01","1.60"]},{"value":["2023-01-01","0.16"]},{"value":["2023-02-01","1.26"]},{"value":["2023-03-01","0.82"]},{"value":["2023-04-01","1.49"]},{"value":["2023-05-01","0.93"]},{"value":["2023-06-01","0.11"]},{"value":["2023-07-01","0.26"]},{"value":["2023-08-01","0.58"]},{"value":["2023-09-01","0.04"]},{"value":["2023-10-01","0.32"]},{"value":["2023-11-01","0.08"]},{"value":["2023-12-01","0.35"]},{"value":["2024-01-01","0.83"]},{"value":["2024-02-01","0.65"]},{"value":["2024-03-01","0.43"]},{"value":["2024-04-01","1.16"]},{"value":["2024-05-01","0.69"]},{"value":["2024-06-01","0.54"]},{"value":["2024-07-01","0.22"]}],"name":"6. Saúde e cuidados pessoais","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#E6F598","stack":"grp"},{"data":[{"value":["2022-08-01","0.54"]},{"value":["2022-09-01","0.95"]},{"value":["2022-10-01","0.57"]},{"value":["2022-11-01","0.21"]},{"value":["2022-12-01","0.62"]},{"value":["2023-01-01","0.76"]},{"value":["2023-02-01","0.44"]},{"value":["2023-03-01","0.38"]},{"value":["2023-04-01","0.18"]},{"value":["2023-05-01","0.64"]},{"value":["2023-06-01","0.36"]},{"value":["2023-07-01","0.38"]},{"value":["2023-08-01","0.38"]},{"value":["2023-09-01","0.45"]},{"value":["2023-10-01","0.27"]},{"value":["2023-11-01","0.58"]},{"value":["2023-12-01","0.48"]},{"value":["2024-01-01","0.82"]},{"value":["2024-02-01","0.05"]},{"value":["2024-03-01","0.33"]},{"value":["2024-04-01","0.10"]},{"value":["2024-05-01","0.22"]},{"value":["2024-06-01","0.29"]},{"value":["2024-07-01","0.52"]}],"name":"7. Despesas pessoais","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#ABDDA4","stack":"grp"},{"data":[{"value":["2022-08-01","0.61"]},{"value":["2022-09-01","0.12"]},{"value":["2022-10-01","0.18"]},{"value":["2022-11-01","0.02"]},{"value":["2022-12-01","0.19"]},{"value":["2023-01-01","0.36"]},{"value":["2023-02-01","6.28"]},{"value":["2023-03-01","0.10"]},{"value":["2023-04-01","0.09"]},{"value":["2023-05-01","0.05"]},{"value":["2023-06-01","0.06"]},{"value":["2023-07-01","0.13"]},{"value":["2023-08-01","0.69"]},{"value":["2023-09-01","0.05"]},{"value":["2023-10-01","0.05"]},{"value":["2023-11-01","0.02"]},{"value":["2023-12-01","0.24"]},{"value":["2024-01-01","0.33"]},{"value":["2024-02-01","4.98"]},{"value":["2024-03-01","0.14"]},{"value":["2024-04-01","0.05"]},{"value":["2024-05-01","0.09"]},{"value":["2024-06-01","0.06"]},{"value":["2024-07-01","0.08"]}],"name":"8. Educação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#66C2A5","stack":"grp"},{"data":[{"value":["2022-08-01","-1.10"]},{"value":["2022-09-01","-2.08"]},{"value":["2022-10-01","-0.48"]},{"value":["2022-11-01","-0.14"]},{"value":["2022-12-01"," 0.50"]},{"value":["2023-01-01"," 2.09"]},{"value":["2023-02-01"," 0.98"]},{"value":["2023-03-01"," 0.50"]},{"value":["2023-04-01"," 0.08"]},{"value":["2023-05-01"," 0.21"]},{"value":["2023-06-01","-0.14"]},{"value":["2023-07-01"," 0.00"]},{"value":["2023-08-01","-0.09"]},{"value":["2023-09-01","-0.11"]},{"value":["2023-10-01","-0.19"]},{"value":["2023-11-01","-0.50"]},{"value":["2023-12-01"," 0.04"]},{"value":["2024-01-01","-0.08"]},{"value":["2024-02-01"," 1.56"]},{"value":["2024-03-01","-0.13"]},{"value":["2024-04-01"," 0.48"]},{"value":["2024-05-01"," 0.14"]},{"value":["2024-06-01","-0.08"]},{"value":["2024-07-01"," 0.18"]}],"name":"9. Comunicação","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","color":"#3288BD","stack":"grp"}],"tooltip":{"trigger":"axis","borderColor":"lightgrey","backgroundColor":"rgba(255,255,255,0.9)"},"title":[{"text":"Impacto dos grupos de produto e serviçoes no IPCA-15"}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -874,6 +925,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

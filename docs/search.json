@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Andre Barbato",
     "section": "",
-    "text": "Especialista em MBA Data Science e Analytics pela USP-ESALQ e bacharel em Ciências Econômicas pela PUC-SP. Atua há 10+ anos em finanças corporativas em empresas multinacionais de grande porte nos setores de Telecom e TI, principalmente nas áreas FP&A e Controladoria, sendo responsável pelos processos de Orçamento, Rolling Forecast, Monthly Closing."
+    "text": "Mestrando em Economia pela UFABC, especialista em Data Science e Analytics pela USP/ESALQ e bacharel em Ciências Econômicas pela PUC-SP.\nAtua há 10+ anos em finanças corporativas em empresas multinacionais de grande porte nos setores de Telecom e TI, principalmente nas áreas FP&A e Controladoria, sendo responsável por processos de Orçamento, Rolling Forecast, Monthly Closing."
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -95,7 +95,7 @@
     "href": "blog/IPCA_15/index.html",
     "title": "Acompanhando a inflação com a linguagem R",
     "section": "",
-    "text": "IPCA-15 sobe 0,39% em Junho e fica em 4,06% no acumulado dos últimos 12 meses\n\n\nFonte: Unsplash\n\nIntrodução\nO início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.\n\nCode# Carregar pacotes\nlibrary(sidrar)\nlibrary(tidyverse)\nlibrary(echarts4r)\nlibrary(RColorBrewer)\n\n\n\nCode# Recuperando os dados via SIDRA\nipca &lt;- sidrar::get_sidra(\n  x = 7060, # Tabela do IPCA --- 7062 tabela IPCA-15\n  variable = 63, # Variável: 355 IPCA-15 Variação Mensal (%)\n  period = c(\"last\" = 24) # Período últimos 24 meses  \n)\n\n\n\nCode# Tratamento dos dados\n\n## Seleção das colunas\nipca &lt;- ipca |&gt;\n  rename(valor = 'Valor',\n         cod_mes = 'Mês (Código)',\n         cod_abertura = 'Geral, grupo, subgrupo, item e subitem (Código)',\n         desc_abertura = 'Geral, grupo, subgrupo, item e subitem') |&gt; \n  select(valor, cod_mes, cod_abertura, desc_abertura)\n\n\n## Separando a coluna desc_abertura\nipca &lt;- ipca |&gt; \n  tidyr::separate_wider_delim(\n    cols = desc_abertura,\n    delim = \".\",\n    names = c(\"cod\", \"desc\"),\n    too_few = \"align_end\",\n    cols_remove = FALSE\n  )\n\n## Criando colunas\nipca &lt;- ipca |&gt;\n  mutate(\n    # Criando coluna data a partir da coluna cod_mes\n    data = lubridate::dmy(paste0(\"01\",\n                                 stringr::str_sub(cod_mes, start = -2),\n                                 stringr::str_sub(cod_mes, end = 4))),\n    # Criando tipo para os níveis de abertura\n    tipo_abertura = dplyr::case_when(\n      nchar(cod) == 1 ~ \"Grupo\",\n      nchar(cod) == 2 ~ \"Subgrupo\",\n      nchar(cod) == 4 ~ \"Item\",\n      nchar(cod) &gt; 4 ~ \"Subitem\",\n      is.na(cod) ~ \"Geral\"\n    )\n    )\n\n\n\nCode# Gráfico de evolução do IPCA-15\nipca |&gt; \n  filter(tipo_abertura == \"Geral\") |&gt; \n  echarts4r::e_charts(x = data,\n                      backgroundColor = \"rgb(255,255,255)\") |&gt; \n  echarts4r::e_line(serie = valor,\n                    name = \"IPCA-15\",\n                    color = \"darkblue\",\n                    smooth = FALSE) |&gt; \n  echarts4r::e_tooltip(trigger = \"axis\",\n                       borderColor = \"darkblue\",\n                       backgroundColor = \"rgba(255,255,255,0.9)\") |&gt; \n  echarts4r::e_title(\"Evolução do IPCA-15\") |&gt; \n  echarts4r::e_legend(show = FALSE) |&gt; \n  echarts4r::e_axis_labels(y = \"IPCA-15 mensal (%)\")\n\n\n\n\n\n\nCode# Criando a paleta de cores\npaleta &lt;- RColorBrewer::brewer.pal(9, \n                                   name = \"Spectral\")\n# Gráfico de colunas empilhadas\nipca |&gt; \n  filter(tipo_abertura == \"Grupo\") |&gt;\n  select(data, cod, valor) |&gt; \n  pivot_wider(names_from = cod,\n              values_from = valor) |&gt; \n  echarts4r::e_charts(data, backgroundColor = \"rgb(255,255,255)\") |&gt; \n  echarts4r::e_bar(1, name = \"1. Alimentação e bebidas\", color = paleta[1], stack = \"grp\") |&gt; \n  echarts4r::e_bar(2, name = \"2. Habitação\", color = paleta[2], stack = \"grp\") |&gt; \n  echarts4r::e_bar(3, name = \"3. Artigos de residência\", color = paleta[3], stack = \"grp\") |&gt; \n  echarts4r::e_bar(4, name = \"4. Vestuário\", color = paleta[4], stack = \"grp\") |&gt;\n  echarts4r::e_bar(5, name = \"5. Transportes\", color = paleta[5], stack = \"grp\") |&gt;\n  echarts4r::e_bar(6, name = \"6. Saúde e cuidados pessoais\", color = paleta[6], stack = \"grp\") |&gt;\n  echarts4r::e_bar(7, name = \"7. Despesas pessoais\", color = paleta[7], stack = \"grp\") |&gt;\n  echarts4r::e_bar(8, name = \"8. Educação\", color = paleta[8], stack = \"grp\") |&gt;\n  echarts4r::e_bar(9, name = \"9. Comunicação\", color = paleta[9], stack = \"grp\") |&gt;\n  echarts4r::e_tooltip(trigger = \"axis\",\n                       borderColor = \"lightgrey\",\n                       backgroundColor = \"rgba(255,255,255,0.9)\") |&gt;\n  echarts4r::e_legend(show = FALSE) |&gt; \n  echarts4r::e_title(\"Impacto dos grupos de produto e serviçoes no IPCA-15\") |&gt; \n  echarts4r::e_axis_labels(y = \"IPCA var. mensal (%)\")"
+    "text": "IPCA-15 sobe 0,39% em Junho e fica em 4,06% no acumulado dos últimos 12 meses\n\n\n\nFonte: Unsplash\n\n\n\nIntrodução\nO início de uma análise estatística começa sempre pelo tipo de variável que estamos estudando. Para cada tipo existe uma técnica específica para aplicar.\n\n\nCode\n# Carregar pacotes\nlibrary(sidrar)\nlibrary(tidyverse)\nlibrary(echarts4r)\nlibrary(RColorBrewer)\n\n\n\n\nCode\n# Recuperando os dados via SIDRA\nipca &lt;- sidrar::get_sidra(\n  x = 7060, # Tabela do IPCA --- 7062 tabela IPCA-15\n  variable = 63, # Variável: 355 IPCA-15 Variação Mensal (%)\n  period = c(\"last\" = 24) # Período últimos 24 meses  \n)\n\n\n\n\nCode\n# Tratamento dos dados\n\n## Seleção das colunas\nipca &lt;- ipca |&gt;\n  rename(valor = 'Valor',\n         cod_mes = 'Mês (Código)',\n         cod_abertura = 'Geral, grupo, subgrupo, item e subitem (Código)',\n         desc_abertura = 'Geral, grupo, subgrupo, item e subitem') |&gt; \n  select(valor, cod_mes, cod_abertura, desc_abertura)\n\n\n## Separando a coluna desc_abertura\nipca &lt;- ipca |&gt; \n  tidyr::separate_wider_delim(\n    cols = desc_abertura,\n    delim = \".\",\n    names = c(\"cod\", \"desc\"),\n    too_few = \"align_end\",\n    cols_remove = FALSE\n  )\n\n## Criando colunas\nipca &lt;- ipca |&gt;\n  mutate(\n    # Criando coluna data a partir da coluna cod_mes\n    data = lubridate::dmy(paste0(\"01\",\n                                 stringr::str_sub(cod_mes, start = -2),\n                                 stringr::str_sub(cod_mes, end = 4))),\n    # Criando tipo para os níveis de abertura\n    tipo_abertura = dplyr::case_when(\n      nchar(cod) == 1 ~ \"Grupo\",\n      nchar(cod) == 2 ~ \"Subgrupo\",\n      nchar(cod) == 4 ~ \"Item\",\n      nchar(cod) &gt; 4 ~ \"Subitem\",\n      is.na(cod) ~ \"Geral\"\n    )\n    )\n\n\n\n\nCode\n# Gráfico de evolução do IPCA-15\nipca |&gt; \n  filter(tipo_abertura == \"Geral\") |&gt; \n  echarts4r::e_charts(x = data,\n                      backgroundColor = \"rgb(255,255,255)\") |&gt; \n  echarts4r::e_line(serie = valor,\n                    name = \"IPCA-15\",\n                    color = \"darkblue\",\n                    smooth = FALSE) |&gt; \n  echarts4r::e_tooltip(trigger = \"axis\",\n                       borderColor = \"darkblue\",\n                       backgroundColor = \"rgba(255,255,255,0.9)\") |&gt; \n  echarts4r::e_title(\"Evolução do IPCA-15\") |&gt; \n  echarts4r::e_legend(show = FALSE) |&gt; \n  echarts4r::e_axis_labels(y = \"IPCA-15 mensal (%)\")\n\n\n\n\n\n\n\n\nCode\n# Criando a paleta de cores\npaleta &lt;- RColorBrewer::brewer.pal(9, \n                                   name = \"Spectral\")\n# Gráfico de colunas empilhadas\nipca |&gt; \n  filter(tipo_abertura == \"Grupo\") |&gt;\n  select(data, cod, valor) |&gt; \n  pivot_wider(names_from = cod,\n              values_from = valor) |&gt; \n  echarts4r::e_charts(data, backgroundColor = \"rgb(255,255,255)\") |&gt; \n  echarts4r::e_bar(1, name = \"1. Alimentação e bebidas\", color = paleta[1], stack = \"grp\") |&gt; \n  echarts4r::e_bar(2, name = \"2. Habitação\", color = paleta[2], stack = \"grp\") |&gt; \n  echarts4r::e_bar(3, name = \"3. Artigos de residência\", color = paleta[3], stack = \"grp\") |&gt; \n  echarts4r::e_bar(4, name = \"4. Vestuário\", color = paleta[4], stack = \"grp\") |&gt;\n  echarts4r::e_bar(5, name = \"5. Transportes\", color = paleta[5], stack = \"grp\") |&gt;\n  echarts4r::e_bar(6, name = \"6. Saúde e cuidados pessoais\", color = paleta[6], stack = \"grp\") |&gt;\n  echarts4r::e_bar(7, name = \"7. Despesas pessoais\", color = paleta[7], stack = \"grp\") |&gt;\n  echarts4r::e_bar(8, name = \"8. Educação\", color = paleta[8], stack = \"grp\") |&gt;\n  echarts4r::e_bar(9, name = \"9. Comunicação\", color = paleta[9], stack = \"grp\") |&gt;\n  echarts4r::e_tooltip(trigger = \"axis\",\n                       borderColor = \"lightgrey\",\n                       backgroundColor = \"rgba(255,255,255,0.9)\") |&gt;\n  echarts4r::e_legend(show = FALSE) |&gt; \n  echarts4r::e_title(\"Impacto dos grupos de produto e serviçoes no IPCA-15\") |&gt; \n  echarts4r::e_axis_labels(y = \"IPCA var. mensal (%)\")"
   },
   {
     "objectID": "indexold.html",
@@ -109,6 +109,76 @@
     "href": "projetos.html",
     "title": "Projetos",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\nHarlow Malloc\n\n\nMar 19, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\nTristan O’Malley\n\n\nMar 16, 2023\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\nPrevisão de vendas para o varejo\n\n\n\nsales\n\n\nforecasting\n\n\ntime_series\n\n\n\n\n\n\n\nAndre Barbato\n\n\nJan 15, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html",
+    "href": "posts/sales_forecasting/index.html",
+    "title": "Previsão de vendas para o varejo",
+    "section": "",
+    "text": "Previsão de vendas no varejo usando modelos estatísticos e de Machine Learning"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#modelos-sarima",
+    "href": "posts/sales_forecasting/index.html#modelos-sarima",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Modelos SARIMA",
+    "text": "Modelos SARIMA"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#random-forest",
+    "href": "posts/sales_forecasting/index.html#random-forest",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Random Forest",
+    "text": "Random Forest"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#xgboost",
+    "href": "posts/sales_forecasting/index.html#xgboost",
+    "title": "Previsão de vendas para o varejo",
+    "section": "XGBoost",
+    "text": "XGBoost"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#neural-network",
+    "href": "posts/sales_forecasting/index.html#neural-network",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Neural Network",
+    "text": "Neural Network"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#data-wrangling",
+    "href": "posts/sales_forecasting/index.html#data-wrangling",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Data Wrangling",
+    "text": "Data Wrangling"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#análise-exploratória",
+    "href": "posts/sales_forecasting/index.html#análise-exploratória",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Análise Exploratória",
+    "text": "Análise Exploratória"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#modelos",
+    "href": "posts/sales_forecasting/index.html#modelos",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Modelos",
+    "text": "Modelos\n\nModelos SARIMA\n\n\nRandom Forest\n\n\nXGBoost\n\n\nNeural Network"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#resultados",
+    "href": "posts/sales_forecasting/index.html#resultados",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Resultados",
+    "text": "Resultados"
+  },
+  {
+    "objectID": "posts/sales_forecasting/index.html#dados",
+    "href": "posts/sales_forecasting/index.html#dados",
+    "title": "Previsão de vendas para o varejo",
+    "section": "Dados",
+    "text": "Dados\nOs dados utilizados nesse projeto são disponibilizados na plataforma Kaggle e referem-se o histórico de vendas da rede de lojas do Walmart. Coletados entre 05/02/2010 e 26/10/2012, referem-se a 45 lojas divididas em 81 departamentos.\nAs informações foram disponibilizadas em três arquivos com extensão CSV. O arquivo ‘stores.cvs’ contém informações sobre as lojas, separadas em categorias de acordo com seu tamanho. O arquivo ‘train.csv’ contém dados históricos de vendas semanais por loja e departamento. Por fim, o arquivo ‘features.csv’ contém dados relativos às lojas, departamentos, dados regionais meteorológicos, índices macroeconômicos e de calendário."
   }
 ]
