@@ -2,11 +2,11 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='https://sig.ufabc.edu.br/sigaa/public/programa/portal.jsf?lc=pt_BR&id=229'>Affiliations</a>.
+subtitle: <a href='https://sig.ufabc.edu.br/sigaa/public/programa/portal.jsf?lc=pt_BR&id=229'>Afiliações</a>.
 
 profile:
   align: right
-  image: pro-file.jpeg
+  image: IMG_3254-edited.jpg
   image_circular: false # crops the image to make it circular
 #  more_info: >
 #    <p>555 your office number</p>
