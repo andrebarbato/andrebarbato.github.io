@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: <a href='https://sig.ufabc.edu.br/sigaa/public/programa/portal.jsf?lc=pt_BR&id=229'>Affiliations</a>.
 
 profile:
   align: right
