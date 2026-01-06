@@ -1,9 +1,9 @@
 ---
 layout: page
-title: sales forecasting
-description: usando modelos estatísticos e machine learning
+title: forecasting de vendas
+description: usando modelos estatísticos e de machine learning
 img: assets/img/project_covers/project_1_cover.jpg
-importance: 1
+importance: 2
 category: master
 related_publications: true
 ---
