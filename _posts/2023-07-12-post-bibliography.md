@@ -5,6 +5,7 @@ date: 2023-07-12 09:56:00-0400
 description: an example of a blog post with bibliography
 tags: formatting bib
 categories: sample-posts
+published: false
 giscus_comments: true
 related_posts: false
 related_publications: true

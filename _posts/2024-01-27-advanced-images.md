@@ -5,6 +5,7 @@ date: 2024-01-27 11:46:00
 description: this is what advanced image components could look like
 tags: formatting images
 categories: sample-posts
+published: false
 thumbnail: assets/img/9.jpg
 images:
   compare: true
