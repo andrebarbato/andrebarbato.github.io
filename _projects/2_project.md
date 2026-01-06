@@ -2,7 +2,7 @@
 layout: page
 title: avaliação de impacto
 description: eforma trabalhista de 2017 na taxa de desemprego usando o método de Synthetic Difference in Differences (SDID)
-img: assets/img/project_cover/project_2_cover.jpg
+img: assets/img/project_covers/project_2_cover.jpg
 importance: 2
 category: master
 giscus_comments: true
