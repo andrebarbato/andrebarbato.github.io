@@ -46,14 +46,14 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-forecasting-de-vendas",
-          title: 'Forecasting de vendas',
+          section: "News",},{id: "projects-sales-forecasting",
+          title: 'sales forecasting',
           description: "usando modelos estatísticos e machine learning",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
+            },},{id: "projects-avaliação-de-impacto",
+          title: 'avaliação de impacto',
+          description: "eforma trabalhista de 2017 na taxa de desemprego usando o método de Synthetic Difference in Differences (SDID)",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
             },},{id: "projects-project-3-with-very-long-name",
