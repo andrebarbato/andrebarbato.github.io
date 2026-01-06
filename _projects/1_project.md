@@ -1,7 +1,7 @@
 ---
 layout: page
-title: project 1
-description: with background image
+title: Forecasting de vendas
+description: usando modelos estatísticos e machine learning
 img: assets/img/project_covers/project_1_cover.jpg
 importance: 1
 category: master
