@@ -1,10 +1,10 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
+title: avaliação de impacto
+description: eforma trabalhista de 2017 na taxa de desemprego usando o método de Synthetic Difference in Differences (SDID)
+img: assets/img/project_cover/project_2_cover.jpg
 importance: 2
-category: work
+category: master
 giscus_comments: true
 ---
 
