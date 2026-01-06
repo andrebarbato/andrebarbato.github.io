@@ -46,9 +46,9 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-sales-forecasting",
-          title: 'sales forecasting',
-          description: "usando modelos estatísticos e machine learning",
+          section: "News",},{id: "projects-forecasting-de-vendas",
+          title: 'forecasting de vendas',
+          description: "usando modelos estatísticos e de machine learning",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
             },},{id: "projects-avaliação-de-impacto",
