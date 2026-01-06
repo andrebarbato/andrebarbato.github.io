@@ -1,7 +1,7 @@
 {
   "basics": {
     "name": "Andre Barbato",
-    "label": "Economista & Data Scientist",
+    "label": "Economista e especialista em Data Scientist",
     "image": "",
     "email": "",
     "phone": "",
@@ -24,7 +24,7 @@
   },
   "work": [
     {
-      "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico",
+      "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - CNPq",
       "position": "Pesquisador de mestrado",
       "url": "https://www.gov.br/cnpq/pt-br",
       "startDate": "2025",
