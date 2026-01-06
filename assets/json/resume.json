@@ -5,7 +5,7 @@
     "image": "",
     "email": "",
     "phone": "",
-    "url": "https://andrebarbato.github.io/al-folio/",
+    "url": "https://andrebarbato.github.io/",
     "summary": "Mestrando em economia com interesses em Macroeconomia e Finanças, Política Monetária, Crescimento e Economia do Trabalho",
     "location": {
       "address": "",
@@ -24,13 +24,13 @@
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity"]
+      "name": "Telefonica Brasuk",
+      "position": "Consultor de Planejamento e Controle Financeiro",
+      "url": "https://vivo.com.br",
+      "startDate": "2018",
+      "endDate": "2024",
+      "summary": "Desenvolvimento de modelo de projeção de resultado alinhado com premissas fornecidas pelas áreas de marketing e produto. Responsável pelo planejamento de Receita no médio e longo prazo, analisando a performance de indicadores comerciais e identificando riscos e oportunidades para otimização de resultados. Participação nos processos de Orçamento, Plano Estratégico e Rolling Forecast. Apuração e identificação das principais causas de desvio em relação às projeções. Criação de relatórios mensais para a gestão do produto. Interação com as áreas técnica, comercial e marketing para levantamento de informações relevantes ao planejamento.",
+      "highlights": ["Financial Modeling", "Forecasting", "SQL", "Power BI"]
     }
   ],
   "volunteer": [
