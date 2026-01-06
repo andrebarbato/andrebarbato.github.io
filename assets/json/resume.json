@@ -24,13 +24,22 @@
   },
   "work": [
     {
-      "name": "Telefonica Brasuk",
+      "name": "Vivo",
       "position": "Consultor de Planejamento e Controle Financeiro",
       "url": "https://vivo.com.br",
       "startDate": "2018",
       "endDate": "2024",
       "summary": "Desenvolvimento de modelo de projeção de resultado alinhado com premissas fornecidas pelas áreas de marketing e produto. Responsável pelo planejamento de Receita no médio e longo prazo, analisando a performance de indicadores comerciais e identificando riscos e oportunidades para otimização de resultados. Participação nos processos de Orçamento, Plano Estratégico e Rolling Forecast. Apuração e identificação das principais causas de desvio em relação às projeções. Criação de relatórios mensais para a gestão do produto. Interação com as áreas técnica, comercial e marketing para levantamento de informações relevantes ao planejamento.",
       "highlights": ["Financial Modeling", "Forecasting", "SQL", "Power BI"]
+    },
+    {
+      "name": "Capgemini",
+      "position": "Analista de Controladoria Senior",
+      "url": "https://www.capgemini.com/br-pt/",
+      "startDate": "2011",
+      "endDate": "2018",
+      "summary": "Responsável pela elaboração, consolidação e análise de Orçamento e Forecast (Full P&L); Acompanhamento e análise das principais variações entre Real vs. Budget vs. Forecast assegurando o controle de receitas e custos. Atuação junto a contabilidade e demais áreas no processo de fechamento mensal. Desenvolvimento e acompanhamento de KPI’s e Dashboard Financeiros. Suporte a unidade de negócio através de relatórios financeiros por linha de produto/cliente/segmento e apresentações gerenciais.",
+      "highlights": ["Budget", "Forecast", "VBA"]
     }
   ],
   "volunteer": [
