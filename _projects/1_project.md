@@ -13,28 +13,48 @@ toc:
 ---
 
 {% details Click here to know more %}
-Projeto baseado em trabalho de conclusão de curso (TCC) como requisito para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
+Projeto baseado em TCC para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
 {% enddetails %}
 
 ---
 
 ## Introdução
 
+Citations are then used in the article body with the `<d-cite>` tag.
+The key attribute is a reference to the id provided in the bibliography.
+The key attribute can take multiple ids, separated by commas.
+
 ---
 
 ## Metodologia
+
+Citations are then used in the article body with the `<d-cite>` tag.
+The key attribute is a reference to the id provided in the bibliography.
+The key attribute can take multiple ids, separated by commas.
 
 ---
 
 ## Dados
 
+Citations are then used in the article body with the `<d-cite>` tag.
+The key attribute is a reference to the id provided in the bibliography.
+The key attribute can take multiple ids, separated by commas.
+
 ---
 
 ## Resultados
 
+Citations are then used in the article body with the `<d-cite>` tag.
+The key attribute is a reference to the id provided in the bibliography.
+The key attribute can take multiple ids, separated by commas.
+
 ---
 
 ## Conclusão
+
+Citations are then used in the article body with the `<d-cite>` tag.
+The key attribute is a reference to the id provided in the bibliography.
+The key attribute can take multiple ids, separated by commas.
 
 ---
 
