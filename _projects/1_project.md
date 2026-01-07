@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: distill
 title: forecasting de vendas
 description: usando modelos estatísticos e de machine learning
 img: assets/img/project_covers/project_1_cover.jpg
@@ -13,7 +13,7 @@ toc:
 ---
 
 {% details Click here to know more %}
-Projeto baseado em TCC para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
+Projeto baseado em trabalho de conclusção de custo (TCC) entregue como critério para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
 {% enddetails %}
 
 ---
