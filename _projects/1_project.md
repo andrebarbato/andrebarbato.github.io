@@ -5,12 +5,28 @@ description: usando modelos estatísticos e de machine learning
 img: assets/img/project_covers/project_1_cover.jpg
 importance: 2
 category: master
+date: 2021-05-22
 related_publications: true
+authors:
+  - name: Albert Einstein
+    url: "https://en.wikipedia.org/wiki/Albert_Einstein"
+    affiliations:
+      name: IAS, Princeton
+
 toc:
-  sidebar: left
----
+  - name: Introdução
+    # if a section has subsections, you can add them as follows:
+    # subsections:
+    #   - name: Example Child Subsection 1
+    #   - name: Example Child Subsection 2
+  - name: Metodologia
+  - name: Dados
+  - name: Resultados
+  - name: Conclusão
+  - name: Referências
 
 ---
+
 
 {% details Click here to know more %}
 Projeto baseado em trabalho de conclusção de custo (TCC) entregue como critério para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
