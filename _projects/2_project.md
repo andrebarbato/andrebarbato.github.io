@@ -14,6 +14,7 @@ toc:
 > 
 > Projeto baseado em artigo escrito como critério de avaliação para conclusão da disciplina
 > de Microeconomia do Desenvolvimento no PPGECO/UFABC.
+{: .block-tip }
 
 ## Introdução
 
