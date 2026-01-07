@@ -53,7 +53,7 @@ ninja.data = [{
               window.location.href = "/projects/1_project/";
             },},{id: "projects-avaliação-de-impacto",
           title: 'avaliação de impacto',
-          description: "reforma trabalhista de 2017 na taxa de desemprego usando o método de Synthetic Difference in Differences (SDID)",
+          description: "da reforma trabalhista de 2017 na taxa de desemprego usando o método de Synthetic Difference in Differences (SDID)",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
             },},{id: "projects-project-3-with-very-long-name",
