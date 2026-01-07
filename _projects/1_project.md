@@ -10,9 +10,9 @@ toc:
   sidebar: left
 ---
 
-> [!NOTE]
-> 
-> Projeto baseado em trabalho de conclusão de curso (TCC) como requisito para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
+{% details Clique aqui para saber mais %}
+Projeto baseado em trabalho de conclusão de curso (TCC) como requisito para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
+{% enddetails %}
 
 ## Introdução
 

@@ -10,11 +10,10 @@ toc:
   sidebar: left
 ---
 
-> [!NOTE]
-> 
-> Projeto baseado em artigo escrito como critério de avaliação para conclusão da disciplina
-> de Microeconomia do Desenvolvimento no PPGECO/UFABC.
-{: .block-tip }
+{% details Clique aqui para saber mais %}
+Projeto baseado em artigo escrito como critério de avaliação para conclusão da disciplina
+de Microeconomia do Desenvolvimento no PPGECO/UFABC.
+{% enddetails %}
 
 ## Introdução
 
