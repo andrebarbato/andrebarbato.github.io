@@ -10,19 +10,33 @@ toc:
   sidebar: left
 ---
 
-{% details Clique aqui para saber mais %}
+---
+
+{% details Click here to know more %}
 Projeto baseado em artigo escrito como critério de avaliação para conclusão da disciplina
 de Microeconomia do Desenvolvimento no PPGECO/UFABC.
 {% enddetails %}
 
+---
+
 ## Introdução
+
+---
 
 ## Metodologia
 
+---
+
 ## Dados
+
+---
 
 ## Resultados
 
+---
+
 ## Conclusão
+
+---
 
 ## Referências
