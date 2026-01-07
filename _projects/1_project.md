@@ -5,13 +5,13 @@ description: usando modelos estatísticos e de machine learning
 img: assets/img/project_covers/project_1_cover.jpg
 importance: 2
 category: master
-date: 2021-05-22
+date: 2024-01-15
 related_publications: true
 authors:
-  - name: Albert Einstein
-    url: "https://en.wikipedia.org/wiki/Albert_Einstein"
+  - name: Andre Barbato
+    url: "https://andrebarbato.github.io/"
     affiliations:
-      name: IAS, Princeton
+      name: ESALQ/USP, Piracicaba
 
 toc:
   - name: Introdução
@@ -24,7 +24,6 @@ toc:
   - name: Resultados
   - name: Conclusão
   - name: Referências
-
 ---
 
 
@@ -36,41 +35,31 @@ Projeto baseado em trabalho de conclusção de custo (TCC) entregue como critér
 
 ## Introdução
 
-Citations are then used in the article body with the `<d-cite>` tag.
-The key attribute is a reference to the id provided in the bibliography.
-The key attribute can take multiple ids, separated by commas.
+
 
 ---
 
 ## Metodologia
 
-Citations are then used in the article body with the `<d-cite>` tag.
-The key attribute is a reference to the id provided in the bibliography.
-The key attribute can take multiple ids, separated by commas.
+
 
 ---
 
 ## Dados
 
-Citations are then used in the article body with the `<d-cite>` tag.
-The key attribute is a reference to the id provided in the bibliography.
-The key attribute can take multiple ids, separated by commas.
+
 
 ---
 
 ## Resultados
 
-Citations are then used in the article body with the `<d-cite>` tag.
-The key attribute is a reference to the id provided in the bibliography.
-The key attribute can take multiple ids, separated by commas.
+
 
 ---
 
 ## Conclusão
 
-Citations are then used in the article body with the `<d-cite>` tag.
-The key attribute is a reference to the id provided in the bibliography.
-The key attribute can take multiple ids, separated by commas.
+
 
 ---
 
