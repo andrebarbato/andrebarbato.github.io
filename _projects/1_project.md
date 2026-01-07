@@ -32,7 +32,7 @@ toc:
 Projeto baseado em trabalho de conclusção de custo (TCC) entregue como critério para conclusão do MBA em Data Science e Analytics na ESALQ/USP.
 {% enddetails %}
 
----
+
 
 ## Introdução
 
