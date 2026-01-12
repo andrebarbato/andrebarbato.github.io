@@ -1,12 +1,12 @@
 {
   "basics": {
     "name": "Andre Barbato",
-    "label": "Economista e especialista em Data Scientist",
+    "label": "Economista e especialista em Data Science",
     "image": "",
     "email": "",
     "phone": "",
     "url": "https://andrebarbato.github.io/",
-    "summary": "Mestrando em economia com interesses em Macroeconomia e Finanças, Política Monetária, Crescimento e Economia do Trabalho",
+    "summary": "Mestrando em economia com interesses em Macroeconomia e Finanças, Política Monetária, Desenvolvimento e Economia do Trabalho",
     "location": {
       "address": "",
       "postalCode": "",
@@ -38,7 +38,7 @@
       "url": "https://vivo.com.br",
       "startDate": "2018",
       "endDate": "2024",
-      "summary": "Desenvolvimento de modelo de projeção de resultado em colaboração com marketing e produto. Foco no planejamento de Receita no médio e longo prazo, analisando indicadores comerciais para identificando riscos e oportunidades. Participação nos processos de Orçamento e Rolling Forecast. Criação de relatórios mensais e interação com áreas técnicas e comerciais para coletar informações essenciais ao planejamento.",
+      "summary": "Desenvolvimento de modelo de projeção de resultado em colaboração com marketing e produto. Foco no planejamento de Receita no médio e longo prazo, analisando indicadores comerciais para identificar riscos e oportunidades. Participação nos processos de Orçamento e Rolling Forecast. Criação de relatórios mensais e interação com áreas técnicas e comerciais para coletar informações essenciais ao planejamento.",
       "highlights": ["Financial Modeling", "Forecasting", "SQL", "Power BI"]
     },
     {
@@ -79,7 +79,7 @@
       "location": "São Paulo, SP",
       "url": "https://www.pucsp.br/",
       "area": "Ciências Econômicas",
-      "studyType": "Bacharel",
+      "studyType": "Bacharelado",
       "startDate": "2008",
       "endDate": "2012",
       "score": "8.7",
@@ -167,7 +167,7 @@
     },
     {
       "name": "Avaliação da reforma trabalhista usando SDID",
-      "summary": "Avaliação do impacto da reforma trabalhista de 2017 na taxa de desemprego usando o método de Synthetic Difference in Differences (SDID).",
+      "summary": "Avaliação do impacto da reforma trabalhista de 2017 na taxa de desemprego usando o método Synthetic Difference in Differences (SDID).",
       "highlights": ["Causal Inference", "SDID"],
       "startDate": "2025",
       "endDate": "2025",

@@ -27,4 +27,4 @@ latest_posts:
 
 Mestrando em Economia pelo PPGECO/UFABC, Bacharel em Ciências Econômicas pela PUC-SP e especialista em Data Science e Analytics pela USP/ESALQ. 
 
-10+ anos atuando em finanças corporativas em empresas multinacionais de grande porte nos setores de Telecom e TI, principalmente nas áreas de Financial Planning & Analysis (FP&A) e Controladoria (Controlling). Participando nos processos de Orçamento (Budgeting), Rolling Forecast e Fechamento (Closing). Interagindo com as áreas de marketing, produtos e unidades de negócio, fornecendo demonstrações financeiras e relatórios gerenciais para diretoria executiva.
+10+ anos atuando em finanças corporativas em empresas multinacionais de grande porte nos setores de Telecom e TI, principalmente nas áreas de FP&A e Controladoria. Participando nos processos de Orçamento, Rolling Forecast e Fechamento Contábil. Interagindo com as áreas de marketing, produtos e unidades de negócio, fornecendo demonstrações financeiras e relatórios gerenciais para diretoria executiva.
