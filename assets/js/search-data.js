@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "books-the-godfather",
+        },{id: "post-deflacionando-séries-econômicas-no-r",
+        
+          title: "Deflacionando séries econômicas no R",
+        
+        description: "como deflacionar o salário mínimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/deflacionar/";
+          
+        },
+      },{id: "books-the-godfather",
           title: 'The Godfather',
           description: "",
           section: "Books",handler: () => {
