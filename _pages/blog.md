@@ -63,9 +63,28 @@ pagination:
       {% if site.display_categories.size > 0 and site.display_tags.size > 0 %}
         <p>&bull;</p>
       {% endif %}
-      {% for category in site.display_categories %}
+      {%- comment -%}
+      1. Criamos uma lista de categorias apenas de posts publicados
+      {%- endcomment -%}
+      {% assign filtered_categories = "" | split: "" %}
+      {% for post in site.posts %}
+        {% if post.published != false %}
+          {% for category in post.categories %}
+            {% unless filtered_categories contains category %}
+              {% assign cat_as_array = category | split: "---" %}
+              {% assign filtered_categories = filtered_categories | concat: cat_as_array | sort %}
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+
+      {%- comment -%}
+      2. Renderizamos com a sua formatação original
+      {%- endcomment -%}
+      {% for category in filtered_categories %}
         <li>
-          <i class="fa-solid fa-tag fa-sm"></i> <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">{{ category }}</a>
+          <i class="fa-solid fa-tag fa-sm"></i> 
+          <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">{{ category }}</a>
         </li>
         {% unless forloop.last %}
           <p>&bull;</p>
