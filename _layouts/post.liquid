@@ -29,36 +29,35 @@ layout: default
         <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
       {% endif %}
 
-      {{ if eq .Params.published true }}
-        
-        {% if tags != '' %}
-          &nbsp; &middot; &nbsp;
-          {% for tag in page.tags %}
-            {% if url_beginning == '/blog/' %}
-              <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}"> <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
-            {% else %}
-              <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}
-            {% endif %}
-            {% unless forloop.last %}
-              &nbsp;
-            {% endunless %}
-          {% endfor %}
-        {% endif %}
+           
+      {% if tags != '' %}
+        &nbsp; &middot; &nbsp;
+        {% for tag in page.tags %}
+          {% if url_beginning == '/blog/' %}
+            <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}"> <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
+          {% else %}
+            <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}
+          {% endif %}
+          {% unless forloop.last %}
+            &nbsp;
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
 
-        {% if categories != '' %}
-          &nbsp; &middot; &nbsp;
-          {% for category in page.categories %}
-            {% if url_beginning == '/blog/' %}
-              <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}"> <i class="fa-solid fa-tag fa-sm"></i> {{ category -}}</a>
-            {% else %}
-              <i class="fa-solid fa-tag fa-sm"></i> {{ category }}
-            {% endif %}
-            {% unless forloop.last %}
-              &nbsp;
-            {% endunless %}
-          {% endfor %}
-        {% endif %}
-      {{ end }}
+      {% if categories != '' %}
+        &nbsp; &middot; &nbsp;
+        {% for category in page.categories %}
+          {% if url_beginning == '/blog/' %}
+            <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}"> <i class="fa-solid fa-tag fa-sm"></i> {{ category -}}</a>
+          {% else %}
+            <i class="fa-solid fa-tag fa-sm"></i> {{ category }}
+          {% endif %}
+          {% unless forloop.last %}
+            &nbsp;
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
+      
     </p>
   </header>
 
