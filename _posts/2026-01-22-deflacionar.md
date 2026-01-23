@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Deflacionando séries econômicas no R
-date: 2015-07-15 15:09:00
+date: 2026-01-22 15:09:00
 description: como deflacionar o salário mínimo
-tags: formatting code
-categories: econ
+tags: inflacao salario_minimo
+categories: economia
+thumbnail: assets/img/blog_thumbs/sal_minimo.jpg
 featured: true
 published: true
 ---
