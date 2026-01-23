@@ -38,7 +38,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2015/deflacionar/";
+            window.location.href = "/blog/2026/deflacionar/";
           
         },
       },{id: "books-the-godfather",
