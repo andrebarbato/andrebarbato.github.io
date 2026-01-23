@@ -33,21 +33,32 @@ pagination:
 
   <div class="tag-category-list">
     <ul class="p-0 m-0">
-      {% assign all_tags = "" | split: ',' %}
-
+      {%- comment -%}
+      1. Criamos uma lista vazia e populamos apenas com tags de posts publicados
+      {%- endcomment -%}
+      {% assign filtered_tags = "" | split: "" %}
       {% for post in site.posts %}
         {% if post.published != false %}
           {% for tag in post.tags %}
-            {% unless all_tags contains tag %}
-              {% capture all_tags %}{{ all_tags | join: ',' }},{{ tag }}{% endcapture %}
-              {% assign all_tags = all_tags | split: ',' %}
+            {% unless filtered_tags contains tag %}
+              {% assign tag_as_array = tag | split: "---" %}
+              {% assign filtered_tags = filtered_tags | concat: tag_as_array | sort %}
             {% endunless %}
           {% endfor %}
         {% endif %}
       {% endfor %}
 
-      {% for tag in all_tags %}
-        <span class="badge">{{ tag }}</span>
+      {%- comment -%}
+      2. Renderizamos usando a sua formatação original
+      {%- endcomment -%}
+      {% for tag in filtered_tags %}
+        <li>
+          <i class="fa-solid fa-hashtag fa-sm"></i> 
+          <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">{{ tag }}</a>
+        </li>
+        {% unless forloop.last %}
+          <p>&bull;</p>
+        {% endunless %}
       {% endfor %}
       {% if site.display_categories.size > 0 and site.display_tags.size > 0 %}
         <p>&bull;</p>
